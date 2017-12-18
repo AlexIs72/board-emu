@@ -19,7 +19,7 @@ $(CONFIG_MK):
 	@echo "# Generated automatically - do not edit!" > $(CONFIG_MK)
 	@echo "include $(PWD)/build.mk/colors.mk" >> $(CONFIG_MK)
 	@echo "" >> $(CONFIG_MK)
-	@echo "export BUILD_DIR=$(BUILD_DIR)" >> $(CONFIG_MK)
+	@echo "export BUILD_DIR=$(PWD)/$(BUILD_DIR)" >> $(CONFIG_MK)
 
 $(TARGETS):
 	@echo "build target(s)..."

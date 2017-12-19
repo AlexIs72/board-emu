@@ -1,6 +1,5 @@
 
-TARGETS=libemu_core 
-#libmips
+TARGETS=libemu_core libemu_mips
 
 include ../config.mk
 include ../build.mk/targets.mk

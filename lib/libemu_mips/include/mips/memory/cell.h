@@ -13,7 +13,8 @@ namespace emu {
     namespace mips {
 		class memory_cell : public emu::core::memory_cell<uint32_t> {
 			public:
-                 memory_cell &operator=(const emu::core::memory_cell<uint32_t> &other) {
+				virtual ~memory_cell() {}
+                memory_cell &operator=(const emu::core::memory_cell<uint32_t> &other) {
 					emu::core::memory_cell<uint32_t>::address(other.address());
 					emu::core::memory_cell<uint32_t>::value(other.value());
                     return *this;

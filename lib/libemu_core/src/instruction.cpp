@@ -2,10 +2,10 @@
 
 using namespace emu::core;
 
-instruction::instruction() {
+/*instruction::instruction() {
 	_init(0,0);
 }
-
+*/
 instruction::instruction(emu::core::memory_cell<uint32_t> &cell) {
 	_init(cell.address(), cell.value());
 }

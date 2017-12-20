@@ -21,6 +21,9 @@ set(SRC
 	src/instruction/jump.cpp  
 	src/instruction/register.cpp  
 	src/instruction/simple.cpp
+
+	src/instruction/immediate/lui.cpp
+	src/instruction/immediate/addiu.cpp
 )
 
 #add_library(${PROJECT_NAME} SHARED ${SRC})

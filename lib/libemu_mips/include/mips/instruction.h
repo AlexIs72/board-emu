@@ -6,6 +6,8 @@
 #include <core/instruction.h>
 #include <mips/memory/cell.h>
 
+#define 	MTR_INVALID_REG	"$$$$$"
+
 namespace emu {
 	namespace mips {
 		class instruction : public emu::core::instruction {
@@ -20,8 +22,9 @@ namespace emu {
 				virtual std::string to_string() { return std::string("Unknown instruction(type: " + _get_type() + ")!"); }
 
 			protected:
-				virtual inline uint32_t	_get_raw_value() { return _raw_value; }
-				virtual inline uint32_t _get_address() { return _address; }
+//				virtual inline uint32_t	_get_raw_value() { return _raw_value; }
+//				virtual inline uint32_t _get_address() { return _address; }
+				const char *reg_to_str(uint8_t reg);
 				virtual inline std::string _get_type() { return std::string("unknown"); }
 
 /*			private:

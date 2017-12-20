@@ -15,21 +15,21 @@ namespace emu {
 		};
 
 		class instruction : public i_instruction {
-			protected:
+			private:
 				uint32_t	_raw_value;
 				uint32_t	_address;
 			public:
-				instruction();
+//				instruction();
 				instruction(emu::core::memory_cell<uint32_t> &cell);
 				instruction(uint32_t address, uint32_t value);
 				virtual ~instruction();
 
 				std::string to_string() { return std::string(); }
 
-/*			protected:
-				virtual inline uint32_t	_get_value() { return _raw_value; }
+			protected:
+				virtual inline uint32_t	_get_raw_value() { return _raw_value; }
 				virtual inline uint32_t _get_address() { return _address; }
-*/
+
 			private:
 				void _init(uint32_t address, uint32_t value);
 

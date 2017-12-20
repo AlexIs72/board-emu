@@ -14,6 +14,7 @@ namespace emu {
                  memory_cell() {
 					_init(0,0);
 				 }
+
                  memory_cell(T value) {
 					_init(0, value);
 				 }

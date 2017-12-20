@@ -8,11 +8,13 @@
 
 #include <memory>
 #include <iostream>
+#include <iomanip>
 //#include <fstream>
 
 #include <core/memory/segment.h>
 #include <mips/memory/cell.h>
 #include <mips/instruction.h>
+#include <mips/instruction/factory.h>
 
 
 int main(__attribute__((unused)) int argc, __attribute__((unused)) char *argv[]) {
@@ -57,8 +59,15 @@ int main(__attribute__((unused)) int argc, __attribute__((unused)) char *argv[])
     for(it = bin_seg.begin<uint32_t>(); it != bin_seg.end<uint32_t>(); ++it) {
 		cell = it.get_cell();
 //		std::cout << std::hex << cell.address()  << "    " << htobe32(cell.value()) << std::endl;
-		std::cout << std::hex << cell.address()  << "      " << cell.value() << std::endl;
-		emu::mips::instruction	instr(cell);
+//		std::cout << std::hex << cell.address()  << "      " << cell.value() << std::endl;
+//		emu::mips::instruction	instr(cell);
+		emu::core::i_instruction *instr = emu::mips::factory::get_instruction(cell);
+		std::cout << 
+					std::hex << std::setfill('0') << std::setw(8) << cell.address()  << 
+					"    " << 
+					std::hex << std::setfill('0') << std::setw(8) << cell.value() << 
+					"    " << instr->to_string() << 
+					std::endl;
 
 //		cell.value(0x01020304);
 //		std::cout << std::hex << cell.address()  << "  ->  " << cell.value() << std::endl;

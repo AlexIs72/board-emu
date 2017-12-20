@@ -6,6 +6,8 @@
 // https://stackoverflow.com/questions/105252/how-do-i-convert-between-big-endian-and-little-endian-values-in-c
 #include <endian.h>
 
+#include <core/memory/cell.h>
+
 
 namespace emu {
     namespace mips {

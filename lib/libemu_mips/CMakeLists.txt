@@ -14,6 +14,13 @@ set(SRC
 #	src/factory.cpp
 #	src/instruction_processor.cpp
 	src/instruction.cpp
+	src/instruction/factory.cpp
+	src/instruction/cop.cpp  
+	src/instruction/factory.cpp  
+	src/instruction/immediate.cpp  
+	src/instruction/jump.cpp  
+	src/instruction/register.cpp  
+	src/instruction/simple.cpp
 )
 
 #add_library(${PROJECT_NAME} SHARED ${SRC})

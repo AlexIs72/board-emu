@@ -3,11 +3,18 @@
 
 #include <stdint.h>
 
+#include <string>
+
 #include <core/memory/cell.h>
 
 namespace emu {
 	namespace core {
-		class instruction {
+		class i_instruction {
+			public:
+				virtual std::string to_string() = 0;
+		};
+
+		class instruction : public i_instruction {
 			protected:
 				uint32_t	_raw_value;
 				uint32_t	_address;
@@ -17,13 +24,22 @@ namespace emu {
 				instruction(uint32_t address, uint32_t value);
 				virtual ~instruction();
 
-			protected:
+				std::string to_string() { return std::string(); }
+
+/*			protected:
 				virtual inline uint32_t	_get_value() { return _raw_value; }
 				virtual inline uint32_t _get_address() { return _address; }
-
+*/
 			private:
 				void _init(uint32_t address, uint32_t value);
 
+		};
+
+		class unknown_instruction : public instruction {
+			public:
+				unknown_instruction(emu::core::memory_cell<uint32_t> &cell) : instruction(cell) {};
+				virtual ~unknown_instruction() {};
+				std::string to_string() { return std::string("Unknown instruction"); }
 		};
 	};
 };

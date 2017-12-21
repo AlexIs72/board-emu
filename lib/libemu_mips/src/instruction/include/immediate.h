@@ -25,7 +25,7 @@ namespace emu {
 			private:
 				immediate_type_format_t _type_format;
             public:
-				immediate_instruction(emu::mips::memory_cell &cell);
+				immediate_instruction(/*emu::mips::memory_cell &cell*/uint32_t value);
                 virtual ~immediate_instruction() {}
 
                 virtual std::string to_string() { 
@@ -40,7 +40,7 @@ namespace emu {
 					return str;
 				}
 		
-				static emu::core::i_instruction *get(emu::mips::memory_cell &cell);
+				static emu::core::i_instruction *get(/*emu::mips::memory_cell &cell*/uint32_t value);
 			protected:
 
 				inline uint8_t _get_opcode() { return _type_format.format.o; }

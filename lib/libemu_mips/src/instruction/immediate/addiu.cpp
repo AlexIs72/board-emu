@@ -6,7 +6,8 @@ std::string addiu_instruction::to_string() {
 	const char *s_reg_str = reg_to_str(_get_s_reg());
 	const char *t_reg_str = reg_to_str(_get_t_reg());
 	std::stringstream ss;
-	
+
+	// TODO Need to simplify if t == s	
 	ss  << "addiu " 
 		<< t_reg_str << ", "
 		<< s_reg_str << ", "

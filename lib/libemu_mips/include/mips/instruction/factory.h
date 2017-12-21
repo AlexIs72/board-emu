@@ -9,7 +9,7 @@ namespace emu {
 	namespace mips {
 		class factory {
 			public:
-				static emu::core::i_instruction *get_instruction(emu::mips::memory_cell &cell);
+				static emu::core::i_instruction *get_instruction(/*emu::mips::memory_cell &cell*/uint32_t value);
        			
 /*				static emu::core::i_instruction *get_simple_instruction(emu::core::memory_cell<uint32_t> &cell);
         		static emu::core::i_instruction *get_register_instruction(emu::core::memory_cell<uint32_t> &cell);

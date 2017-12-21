@@ -38,12 +38,14 @@ const char *reg_str[][2] = {
 };
 
 
-instruction::instruction(emu::mips::memory_cell &cell) : emu::core::instruction(cell.address(), cell.value()) {
+/*instruction::instruction(emu::mips::memory_cell &cell) : emu::core::instruction(cell.address(), cell.value()) {
 
 }
+
 
 instruction::~instruction() {
 }
+*/
 
 const char *instruction::reg_to_str(uint8_t reg) {
     if(reg < sizeof(reg_str)/sizeof(char*)) {

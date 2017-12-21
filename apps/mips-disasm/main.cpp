@@ -61,7 +61,7 @@ int main(__attribute__((unused)) int argc, __attribute__((unused)) char *argv[])
 //		std::cout << std::hex << cell.address()  << "    " << htobe32(cell.value()) << std::endl;
 //		std::cout << std::hex << cell.address()  << "      " << cell.value() << std::endl;
 //		emu::mips::instruction	instr(cell);
-		emu::core::i_instruction *instr = emu::mips::factory::get_instruction(cell);
+		emu::core::i_instruction *instr = emu::mips::factory::get_instruction(cell.value());
 		std::cout << 
 					std::hex << std::setfill('0') << std::setw(8) << cell.address()  << 
 					"    " << 

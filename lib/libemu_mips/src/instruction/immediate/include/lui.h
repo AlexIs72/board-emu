@@ -8,7 +8,7 @@ namespace emu {
     namespace mips {
         class lui_instruction : public immediate_instruction {
             public:
-                lui_instruction(__attribute__((unused)) emu::mips::memory_cell &cell) : immediate_instruction(cell) {}
+                lui_instruction(/*__attribute__((unused)) emu::mips::memory_cell &cell*/uint32_t value) : immediate_instruction(value) {}
                 virtual ~lui_instruction() {}
                 virtual std::string to_string();
         };

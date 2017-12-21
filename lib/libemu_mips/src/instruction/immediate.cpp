@@ -7,7 +7,7 @@
 using namespace emu::mips;
 
 
-immediate_instruction::immediate_instruction(emu::mips::memory_cell &cell) : instruction(cell) {
+immediate_instruction::immediate_instruction(/*emu::mips::memory_cell &cell*/uint32_t value) : instruction(value) {
 	_type_format.raw = _get_raw_value();
 }
 
@@ -82,11 +82,11 @@ struct mips_instruction_handler op_i_handlers[OP_HANDLERS_LIST_SIZE] = {
 */
 
 
-emu::core::i_instruction *immediate_instruction::get(__attribute__((unused)) emu::mips::memory_cell &cell) {
+emu::core::i_instruction *immediate_instruction::get(/*__attribute__((unused)) emu::mips::memory_cell &cell*/uint32_t value) {
 	immediate_type_format_t tf;	
 	emu::core::i_instruction *instruction = NULL;	
 
-	tf.raw = cell.value();
+	tf.raw = value;
 
 	switch(tf.format.o) {
 /*		case 0x00:       	//{ 0xFF, NULL, NULL, NULL, NULL },		//	SPECIAL
@@ -110,7 +110,7 @@ emu::core::i_instruction *immediate_instruction::get(__attribute__((unused)) emu
         case 0x08:          //{ 0x08, "addi", __mtr_asm_decode_two_reg_i, __mtr_c_decode_addi, __mtr_execute_addi },		/ *	addi rt, rs, immediate 	001000 			0x08 	Add immediate (with overflow) 			* /
 			break;
         case 0x09:          //{ 0x09, "addiu", __mtr_asm_decode_two_reg_i, __mtr_c_decode_addi, __mtr_execute_addi },		/ *	addiu rt, rs, immediate 001001 			0x09 	Add immediate unsigned (no overflow) 	* /
-			instruction = new addiu_instruction(cell);
+			instruction = new addiu_instruction(value);
 			break;
         case 0x0A:          //{ 0x0A, "slti", __mtr_asm_decode_two_reg_i, __mtr_c_decode_slti, NULL },					/ *	slti rt, rs, immediate 	001010 			0x0A 	Set on less than immediate (signed) 	* /
 			break;
@@ -123,7 +123,7 @@ emu::core::i_instruction *immediate_instruction::get(__attribute__((unused)) emu
         case 0x0E:          //{ 0x0E, "xori", __mtr_asm_decode_two_reg_i, __mtr_c_decode_bitwise_i, __mtr_execute_xori },	/ *	xori rt, rs, immediate 	001110 			0x0E 	Bitwise exclusive or immediate 			* /
 			break;
         case 0x0F:          //{ 0x0F, "lui", __mtr_asm_decode_one_reg, __mtr_c_decode_lui, __mtr_execute_lui },			/ *	lui rt, immediate 		001111 			0x0F 	Load upper immediate 					* /
-			instruction = new lui_instruction(cell);
+			instruction = new lui_instruction(value);
 			break;
 /*        case 0x10:          //{ 0xFF, NULL, NULL, NULL, NULL },	/ *	* /
 			break;
@@ -229,12 +229,12 @@ emu::core::i_instruction *immediate_instruction::get(__attribute__((unused)) emu
 			break;
 */
 		default:
-			instruction = new immediate_instruction(cell);
+			instruction = new immediate_instruction(value);
 			break;
 	}
 
 	if(instruction == NULL) {
-		instruction = new immediate_instruction(cell);
+		instruction = new immediate_instruction(value);
 	}
 
     return instruction;

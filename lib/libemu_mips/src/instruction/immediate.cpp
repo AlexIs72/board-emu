@@ -2,6 +2,8 @@
 
 #include "immediate/include/lui.h"
 #include "immediate/include/addiu.h"
+#include "immediate/include/load.h"
+#include "immediate/include/save.h"
 
 
 using namespace emu::mips;
@@ -75,7 +77,7 @@ struct mips_instruction_handler op_i_handlers[OP_HANDLERS_LIST_SIZE] = {
 / * 0x3A * /      { 0xFF, NULL, NULL, NULL, NULL },	/ *	* /
 / * 0x3B * /      { 0xFF, NULL, NULL, NULL, NULL },	/ *	* /
 / * 0x3C * /      { 0xFF, NULL, NULL, NULL, NULL },	/ *	* /
-/ * 0x3D * /      { 0xFF, NULL, NULL, NULL, NULL },	/ *	* /  
+/ * 0x3D * /      { 0xFF, NULL, NULL, NULL, NULL },	/ *	* /
 / * 0x3E * /      { 0xFF, NULL, NULL, NULL, NULL },	/ *	* /
 / * 0x3F * /      { 0xFF, NULL, NULL, NULL, NULL },	/ *	* /
 };
@@ -83,8 +85,8 @@ struct mips_instruction_handler op_i_handlers[OP_HANDLERS_LIST_SIZE] = {
 
 
 emu::core::i_instruction *immediate_instruction::get(/*__attribute__((unused)) emu::mips::memory_cell &cell*/uint32_t value) {
-	immediate_type_format_t tf;	
-	emu::core::i_instruction *instruction = NULL;	
+	immediate_type_format_t tf;
+	emu::core::i_instruction *instruction = NULL;
 
 	tf.raw = value;
 
@@ -161,29 +163,40 @@ emu::core::i_instruction *immediate_instruction::get(/*__attribute__((unused)) e
         case 0x1F:          //{ 0x1F, "special3", __mtr_asm_decode_special3, __mtr_c_decode_special3, NULL },	/ *	* /
 			break;
         case 0x20:          //{ 0x20, "lb", __mtr_asm_decode_one_reg, __mtr_c_decode_load, NULL },	/ *	lb rt, immediate(rs) 	100000 			0x20 	Load byte 								* /
+			instruction = new lb_instruction(value);
 			break;
         case 0x21:          //{ 0x21, "lh", __mtr_asm_decode_one_reg, __mtr_c_decode_load, __mtr_execute_lh },	/ *	lh rt, immediate(rs) 	100001 			0x21 	Load halfword 							* /
+			instruction = new lh_instruction(value);
 			break;
         case 0x22:          //{ 0x22, "lwl", __mtr_asm_decode_one_reg, __mtr_c_decode_load, NULL },	/ *	* /
+			instruction = new lwl_instruction(value);
 			break;
         case 0x23:          //{ 0x23, "lw", __mtr_asm_decode_one_reg, __mtr_c_decode_load, __mtr_execute_lw },		/ *	lw rt, immediate(rs) 	100011 			0x23 	Load word 								* /
+			instruction = new lw_instruction(value);
 			break;
         case 0x24:          //{ 0x24, "lbu", __mtr_asm_decode_one_reg, __mtr_c_decode_load, NULL },	/ *	lbu rt, immediate(rs) 	100100 			0x24 	Load byte unsigned 						* /
+			instruction = new lbu_instruction(value);
 			break;
         case 0x25:          //{ 0x25, "lhu", __mtr_asm_decode_one_reg, __mtr_c_decode_load, __mtr_execute_lhu },	/ *	lhu rt, immediate(rs) 	100101 			0x25 	Load halfword unsigned 					* /
+			instruction = new lhu_instruction(value);
 			break;
         case 0x26:          //{ 0x26, "lwr", __mtr_asm_decode_one_reg, __mtr_c_decode_load, NULL },	/ *	* /
+			instruction = new lwr_instruction(value);
 			break;
 /*        case 0x27:          //{ 0xFF, NULL, NULL, NULL, NULL },	/ *	* /
 			break;
 */
         case 0x28:          //{ 0x28, "sb", __mtr_asm_decode_one_reg, __mtr_c_decode_save, NULL },	/ *	sb rt, immediate(rs) 	101000 			0x28 	Store byte 								* /
+			instruction = new sb_instruction(value);
 			break;
         case 0x29:          //{ 0x29, "sh", __mtr_asm_decode_one_reg, __mtr_c_decode_save, __mtr_execute_sh },	/ *	sh rt, immediate(rs) 	101001 			0x29 	Store halfword 							* /
+			instruction = new sh_instruction(value);
 			break;
         case 0x2A:          //{ 0x2A, "swl", __mtr_asm_decode_one_reg, __mtr_c_decode_save, NULL },	/ *	* /
+			instruction = new swl_instruction(value);
 			break;
         case 0x2B:          //{ 0x2B, "sw", __mtr_asm_decode_one_reg, __mtr_c_decode_save, __mtr_execute_sw },		/ *	sw rt, immediate(rs) 	101011 			0x2B 	Store word 								* /
+			instruction = new sw_instruction(value);
 			break;
 /*        case 0x2C:          //{ 0xFF, NULL, NULL, NULL, NULL },	/ *	* /
 			break;
@@ -191,6 +204,7 @@ emu::core::i_instruction *immediate_instruction::get(/*__attribute__((unused)) e
 			break;
 */
         case 0x2E:          //{ 0x2E, "swr", __mtr_asm_decode_one_reg,  __mtr_c_decode_save, NULL },	/ *	* /
+			instruction = new swr_instruction(value);
 			break;
         case 0x2F:          //{ 0x2F, "cache", __mtr_asm_decode_cache, __mtr_c_decode_cache, NULL },	/ *	CACHE op, offset(base)	* /
 			break;
@@ -198,8 +212,10 @@ emu::core::i_instruction *immediate_instruction::get(/*__attribute__((unused)) e
 			break;
 */
         case 0x31:          //{ 0x31, "lwc1", __mtr_asm_decode_one_reg, NULL, NULL },	/ *	lwc1 rt, immediate(rs) 	110001 			0x31 	Load word coprocessor 1 				* /
+			instruction = new lwc1_instruction(value);
 			break;
         case 0x32:          //{ 0x32, "swc1", __mtr_asm_decode_one_reg, NULL, NULL },	/ *	swc1 rt, immediate(rs) 	111001 			0x39 	Store word coprocessor 1 				* /
+			instruction = new swc1_instruction(value);
 			break;
 /*        case 0x33:          //{ 0xFF, NULL, NULL, NULL, NULL },	/ *	* /
 			break;
@@ -239,4 +255,3 @@ emu::core::i_instruction *immediate_instruction::get(/*__attribute__((unused)) e
 
     return instruction;
 }
-

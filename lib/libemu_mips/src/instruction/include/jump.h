@@ -7,10 +7,10 @@ namespace emu {
     namespace mips {
         class jump_instruction : public instruction {
             public:
-				jump_instruction(emu::mips::memory_cell &cell) : instruction(cell) {}
+				jump_instruction(/*emu::mips::memory_cell &cell*/uint32_t value) : instruction(value) {}
                 virtual ~jump_instruction() {}
 		
-				static emu::core::i_instruction *get(emu::mips::memory_cell &cell);
+				static emu::core::i_instruction *get(/*emu::mips::memory_cell &cell*/uint32_t value);
 			protected:
 				virtual std::string _get_type() { return std::string("JUMP"); }
 //                virtual std::string to_string() { return std::string("Unknown instruction: COP type"); }

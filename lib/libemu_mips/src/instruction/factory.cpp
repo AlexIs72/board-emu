@@ -37,34 +37,35 @@ typedef union {
 
 using namespace emu::mips;
 
-emu::core::i_instruction *factory::get_instruction(emu::mips::memory_cell &cell) {
+emu::core::i_instruction *factory::get_instruction(/*emu::mips::memory_cell &cell*/uint32_t value) {
 	base_type_format_t	tf;
 
-	tf.raw = cell.value();
+	tf.raw = value;
 
     if(/*((uint32_t)(*((uint32_t*)*/tf.raw/*)))*/ == 0) {
-        return /*TYPE_S*/simple_instruction::get(cell);
+        return /*TYPE_S*/simple_instruction::get(value);
     }
 
 //	printf("op = 0x%X\n", tf.format.o);
 	
     if(tf.format.o == 0x00) {
-        return /*TYPE_R*/register_instruction::get(cell);
+        return /*TYPE_R*/register_instruction::get(value);
     }
     else if(tf.format.o == 2 || tf.format.o == 3) {
-        return /*TYPE_J*/jump_instruction::get(cell);
+        return /*TYPE_J*/jump_instruction::get(value);
     }
     /*else if(op == 0x1F) {
         return MTR_3_TYPE;
     }*/
     else if((tf.format.o & 0x10) && (tf.format.o & 0x13) && tf.format.o <= 0x13/*(op & 0x11 || op & 0x12 || op & 0x13)*/) {
-        return /*TYPE_COP*/cop_instruction::get(cell);
+        return /*TYPE_COP*/cop_instruction::get(value);
     }
     else {  // All opcodes except 000000, 00001x, and 0100xx are used for I-type instructions.
-        return /*TYPE_I*/immediate_instruction::get(cell);
+        return /*TYPE_I*/immediate_instruction::get(value);
     }
 
-	return new emu::core::unknown_instruction(cell);
+	// TODO Need to add exception
+	return new emu::core::unknown_instruction();
 }
 
 /*

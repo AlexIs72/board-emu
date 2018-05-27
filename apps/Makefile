@@ -1,5 +1,5 @@
 
-TARGETS=mips-disasm
+TARGETS=mips-disasm speccy-emu
 
 include ../config.mk
 include ../build.mk/targets.mk

@@ -1,5 +1,5 @@
 
-TARGETS=libemu_core libemu_mips
+TARGETS=libemu_core libemu_mips libemu_z80
 
 include ../config.mk
 include ../build.mk/targets.mk

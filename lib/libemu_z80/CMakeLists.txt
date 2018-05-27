@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.0)
+
+#project(z80)
+
+#set (CMAKE_VERBOSE_MAKEFILE ON)
+
+include_directories("${PROJECT_SOURCE_DIR}/include")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../libemu_core/include")
+
+add_definitions(-Wall -Werror -Wextra -std=c++11 -ggdb -O0)
+
+set(SRC
+	src/instruction.cpp
+)
+
+#add_library(${PROJECT_NAME} SHARED ${SRC})
+add_library(emu_z80 ${SRC})
+#add_library(libemu_core SHARED ${SRCS})
+add_library(LIBS::emu_z80 ALIAS emu_z80)

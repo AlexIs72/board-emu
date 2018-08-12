@@ -36,6 +36,11 @@ namespace emu {
 					return _size / sizeof(T);
 				}
 
+				inline uint32_t get_address() {
+					return _address;
+				}
+
+
 				template<typename T> void set(memory_cell<T> &cell) {
 				}
 
@@ -84,7 +89,11 @@ namespace emu {
 				inline int load_from_file(const char *filename) {
 		    		return load_from_file(0, filename);
 				}
+				inline int load_from_file(const char *filename, size_t size) {
+		    		return load_from_file(0, filename, size);
+				}
 				int load_from_file(uint32_t offset, const char *filename);
+				int load_from_file(uint32_t offset, const char *filename, size_t size);
 				int load(uint32_t offset, std::streambuf *stream, size_t size);
 
 	    	private:

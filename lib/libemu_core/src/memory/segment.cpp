@@ -55,6 +55,22 @@ int memory_segment::load_from_file(uint32_t offset, const char *filename) {
     throw std::invalid_argument("Invalid input file!");
 }
 
+int memory_segment::load_from_file(uint32_t offset, const char *filename, size_t size) {
+    std::ifstream ifs (filename, std::ifstream::binary);
+
+    if(ifs) {
+		std::filebuf* pbuf = ifs.rdbuf();
+	// get file size using buffer's members
+//		size_t size = pbuf->pubseekoff (0,ifs.end,ifs.in);
+//		pbuf->pubseekpos (0,ifs.in);
+//	ifs.close();
+		return load(offset, pbuf, size);
+    }
+    
+    throw std::invalid_argument("Invalid input file!");
+}
+
+
 int memory_segment::load(uint32_t offset, std::streambuf *stream, size_t size) {
     if(_data) {
     // TODO Add realloc and using offset

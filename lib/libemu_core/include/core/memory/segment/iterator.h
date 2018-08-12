@@ -30,6 +30,13 @@ namespace emu {
     				return *this;
 				}
 
+				memory_segment_iterator<T> &operator+=(size_t size) {
+					_address += size;
+    				_data = (T *)(((uint8_t *)_data) + size);
+    				return *this;
+				}
+
+
 				inline uint32_t	get_address() const {
 					return _address;
 				}

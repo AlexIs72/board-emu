@@ -4,6 +4,9 @@
 #include <stdint.h>
 
 #include <string>
+#include <iomanip>
+#include <sstream>
+
 
 #include <core/memory/cell.h>
 
@@ -12,6 +15,8 @@ namespace emu {
 		class i_instruction {
 			public:
 				virtual std::string to_string() = 0;
+				virtual std::string opcode_to_string() = 0 /* { return std::string()}*/;
+				virtual size_t	get_size() = 0;
 		};
 
 		template <typename T> 
@@ -26,7 +31,31 @@ namespace emu {
 				instruction(T value) : _raw_value(value) {}
 				virtual ~instruction() {}
 
-				std::string to_string() { return std::string(); }
+				virtual std::string to_string() { return std::string(); }
+				virtual std::string opcode_to_string()  {
+    				std::stringstream ss;
+    				size_t  size = get_size();
+    				uint32_t value = _get_raw_value();
+
+    				ss << std::hex << std::setfill('0') << std::left << std::setw(2);
+    				if(size == 4) {
+        				ss << ((value & 0xFF000000) >> 24) << " ";
+    				}
+    				if(size >= 3) {
+        				ss << ((value & 0x00FF0000) >> 16) << " ";
+    				}
+    				if(size >= 2) {
+        				ss << ((value & 0x0000FF00) >> 8) << " ";
+    				}
+    				if(size >= 1) {
+        				ss << (value & 0x000000FF);
+    				}
+
+    				return ss.str();
+				}
+ 
+
+//				inline T get_raw_value() { return _raw_value; }
 
 			protected:
 				virtual inline T	_get_raw_value() { return _raw_value; }
@@ -37,12 +66,14 @@ namespace emu {
 
 		};
 
-		class unknown_instruction : public instruction<uint8_t> {
+		class unknown_instruction : public instruction<uint32_t> {
 			public:
 //				unknown_instruction(emu::core::memory_cell<uint32_t> &cell) : instruction(cell) {};
 				unknown_instruction() : instruction(0) {};
+				unknown_instruction(uint32_t value) : instruction(value) {};
 				virtual ~unknown_instruction() {};
 				std::string to_string() { return std::string("Unknown instruction"); }
+				virtual size_t  get_size() {return 1;}
 		};
 	};
 };

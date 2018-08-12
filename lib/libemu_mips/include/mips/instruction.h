@@ -21,6 +21,7 @@ namespace emu {
 				virtual ~instruction() {}
 
 				virtual std::string to_string() { return std::string("Unknown instruction(type: " + _get_type() + ")!"); }
+				virtual size_t  get_size() { return sizeof(uint32_t);}
 
 			protected:
 				const char *reg_to_str(uint8_t reg);

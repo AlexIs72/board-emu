@@ -10,16 +10,19 @@
 
 namespace emu {
 	namespace z80 {
-		class instruction : public emu::core::instruction {
-/*			private:
-				uint32_t	_raw_value;
+		class instruction : public emu::core::instruction<uint32_t> {
+			private:
+				uint8_t		_size;
+/*				uint32_t	_raw_value;
 				uint32_t	_address;
 */
 			public:
-				instruction(emu::z80::memory_cell &cell);
+//				instruction(emu::z80::memory_cell &cell);
+				instruction(uint32_t value) : emu::core::instruction<uint32_t>(value) {}
 				virtual ~instruction();
 
 				virtual std::string to_string() { return std::string("Unknown instruction(type: " + _get_type() + ")!"); }
+//				virtual std::string opcode_to_string();
 
 			protected:
 //				virtual inline uint32_t	_get_raw_value() { return _raw_value; }

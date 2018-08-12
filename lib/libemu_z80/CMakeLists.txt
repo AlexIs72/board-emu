@@ -12,6 +12,14 @@ add_definitions(-Wall -Werror -Wextra -std=c++11 -ggdb -O0)
 
 set(SRC
 	src/instruction.cpp
+	src/instruction/factory.cpp
+#	src/instruction/primary.cpp
+
+	src/instruction/primary/di.cpp
+	src/instruction/primary/jr.cpp
+	src/instruction/primary/rst.cpp
+	src/instruction/primary/xor.cpp
+	src/instruction/primary/out.cpp
 )
 
 #add_library(${PROJECT_NAME} SHARED ${SRC})

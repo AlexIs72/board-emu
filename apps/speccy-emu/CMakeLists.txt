@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.0)
 project(speccy-emu)
 
 include_directories("${PROJECT_SOURCE_DIR}/../../lib/libemu_core/include" )
-include_directories("${PROJECT_SOURCE_DIR}/../../lib/libemu_mips/include" )
+include_directories("${PROJECT_SOURCE_DIR}/../../lib/libemu_z80/include" )
 
 add_definitions(-O0 -ggdb -Wall -Werror -Wextra -std=c++11)
 

@@ -9,6 +9,10 @@
 #include "primary/include/rst.h"
 #include "primary/include/xor.h"
 #include "primary/include/out.h"
+#include "primary/include/djnz.h"
+#include "primary/include/ld.h"
+
+#include "xx80xx/include/out.h"
 
 using namespace emu::z80;
 
@@ -26,6 +30,13 @@ emu::core::i_instruction *get_primary_instruction(uint32_t value) {
     switch(value8) {
         case 0:
             instruction = new nop_instruction();
+            break;
+        case 0x01:
+        case 0x02:
+            instruction = new ld_instruction(value8, value);
+            break;
+        case 0x10:
+            instruction = new djnz_instruction(value8);
             break;
 		case 0x18:
 		case 0x20:
@@ -97,7 +108,7 @@ emu::core::i_instruction *get_DD_instruction(uint32_t value) {
     return instruction;
 }
 
-emu::core::i_instruction *get_ED_instruction(uint32_t value) {
+emu::core::i_instruction *get_xx80xx_instruction(uint32_t value) {
     uint8_t value8 = ((value & 0xFF000000) >> 24);
     uint16_t value16 = ((value & 0xFFFF0000) >> 16);
     emu::core::i_instruction *instruction = NULL;
@@ -132,7 +143,7 @@ emu::core::i_instruction *factory::get_instruction(/*emu::z80::memory_cell &cell
 	} else if(prefix ==  0xDD) {
 		instruction = get_DD_instruction(value);
 	} else if(prefix ==  0xED) {
-		instruction = get_ED_instruction(value);
+		instruction = get_xx80xx_instruction(value);
 	} else if(prefix ==  0xFD) {
 		instruction = get_FD_instruction(value);
 	} else {

@@ -1,5 +1,5 @@
-#ifndef __EMU_Z80_OUT_INSTRUCTION_H__
-#define __EMU_Z80_OUT_INSTRUCTION_H__
+#ifndef __EMU_Z80_PRIMARY_OUT_INSTRUCTION_H__
+#define __EMU_Z80_PRIMARY_OUT_INSTRUCTION_H__
 
 
 #include "../../include/primary.h"

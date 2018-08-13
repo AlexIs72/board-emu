@@ -20,6 +20,10 @@ set(SRC
 	src/instruction/primary/rst.cpp
 	src/instruction/primary/xor.cpp
 	src/instruction/primary/out.cpp
+	src/instruction/primary/djnz.cpp
+	src/instruction/primary/ld.cpp
+
+	src/instruction/xx80xx/out.cpp
 )
 
 #add_library(${PROJECT_NAME} SHARED ${SRC})

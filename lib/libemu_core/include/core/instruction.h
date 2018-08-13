@@ -37,18 +37,18 @@ namespace emu {
     				size_t  size = get_size();
     				uint32_t value = _get_raw_value();
 
-    				ss << std::hex << std::setfill('0') << std::left << std::setw(2);
     				if(size == 4) {
-        				ss << ((value & 0xFF000000) >> 24) << " ";
+        				ss << std::hex << std::setfill('0') << std::internal << std::setw(2) << ((value & 0xFF000000) >> 24) << " ";
     				}
     				if(size >= 3) {
-        				ss << ((value & 0x00FF0000) >> 16) << " ";
+        				ss << std::hex << std::setfill('0') << std::internal << std::setw(2) << ((value & 0xFF000000) >> 24) << " ";
+						value >>= 8;
     				}
     				if(size >= 2) {
-        				ss << ((value & 0x0000FF00) >> 8) << " ";
+        				ss << std::hex << std::setfill('0') << std::internal << std::setw(2) << ((value & 0x0000FF00) >> 8) << " ";
     				}
     				if(size >= 1) {
-        				ss << (value & 0x000000FF);
+        				ss << std::hex << std::setfill('0') << std::internal << std::setw(2) << (value & 0x000000FF);
     				}
 
     				return ss.str();

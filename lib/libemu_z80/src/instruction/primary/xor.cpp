@@ -47,6 +47,8 @@ std::string xor_instruction::to_string() {
         case 0xEE:
 			ss << "x";
 			break;
+        default:
+            ss << "?";
 	}
 
 	return ss.str();

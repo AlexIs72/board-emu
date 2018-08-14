@@ -13,6 +13,7 @@ namespace emu {
                 ld_instruction(uint8_t opcode, uint32_t value) : primary_instruction(value), _opcode(opcode) {}
                 virtual ~ld_instruction() {}
                 virtual std::string to_string();
+				virtual std::string opcode_to_string();
 
 				virtual size_t  get_size();
         };

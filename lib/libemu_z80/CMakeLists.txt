@@ -19,9 +19,13 @@ set(SRC
 	src/instruction/primary/jr.cpp
 	src/instruction/primary/rst.cpp
 	src/instruction/primary/xor.cpp
+	src/instruction/primary/or.cpp
+	src/instruction/primary/cp.cpp
 	src/instruction/primary/out.cpp
 	src/instruction/primary/djnz.cpp
 	src/instruction/primary/ld.cpp
+	src/instruction/primary/dec.cpp
+	src/instruction/primary/ex.cpp
 
 	src/instruction/xx80xx/out.cpp
 )

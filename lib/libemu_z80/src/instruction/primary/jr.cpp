@@ -9,7 +9,7 @@ std::string jr_instruction::to_string() {
 	std::stringstream ss;
 	uint32_t value =  _get_raw_value();
 	uint8_t	opcode = (value & 0x0000FF00) >> 8;
-	int	nn = (value & 0x000000FF);
+	char	nn = (value & 0x000000FF);
 /*
 JP NN        ;no contition
 JR C,NN        ;jumps if C is set
@@ -42,7 +42,8 @@ JR NZ,NN    ;jumps if Z is reset
 			return ss.str();
 	}
 
-	ss << std::hex << "0x" << std::setw(2) << nn;
+//	ss << "#" <<std::hex << std::setw(2) << (((int16_t)nn) & 0xFF) << "    ; (" << std::dec << (int)nn << ")";
+	ss << (int)nn;
 
 
 	return ss.str();

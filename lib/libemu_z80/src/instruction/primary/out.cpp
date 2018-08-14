@@ -21,6 +21,8 @@ std::string out_instruction::to_string() {
         case 0xD3:
 			ss << "(#" << std::hex << std::setw(2) << std::setfill('0')  << nn << "),a";
 			break;
+        default:
+            ss << "?";
 	}
 
 	return ss.str();

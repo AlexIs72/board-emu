@@ -54,6 +54,8 @@ std::string rst_instruction::to_string() {
         case 0xFF:
 			ss << "38h";
 			break;
+        default:
+            ss << "?";
 	}
 
 	return ss.str();

@@ -15,6 +15,9 @@ clean:
 
 run: build
 	$(BUILD_DIR)/apps/$(TARGET)/$(TARGET) $(BUILD_DIR)/../dumps/zx_spectrum/tests/TEST48.BIN
+
+run2: build
+	$(BUILD_DIR)/apps/$(TARGET)/$(TARGET) $(BUILD_DIR)/../dumps/zx_spectrum/tests/TEST48K.rom
 #	$(BUILD_DIR)/apps/$(TARGET)/$(TARGET) $(BUILD_DIR)/../dumps/mips.bin 
 
 run_dbg: build

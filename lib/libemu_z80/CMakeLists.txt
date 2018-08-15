@@ -15,7 +15,9 @@ set(SRC
 	src/instruction/factory.cpp
 #	src/instruction/primary.cpp
 
+	src/instruction/primary/halt.cpp
 	src/instruction/primary/di.cpp
+	src/instruction/primary/ei.cpp
 	src/instruction/primary/jr.cpp
 	src/instruction/primary/rst.cpp
 	src/instruction/primary/xor.cpp
@@ -28,6 +30,13 @@ set(SRC
 	src/instruction/primary/ex.cpp
 
 	src/instruction/xx80xx/out.cpp
+
+	src/instruction/xxBITxx.cpp
+	src/instruction/xxBITxx/srl.cpp
+	src/instruction/xxBITxx/rlc.cpp
+	src/instruction/xxBITxx/rrc.cpp
+	src/instruction/xxBITxx/rl.cpp
+	src/instruction/xxBITxx/rr.cpp
 )
 
 #add_library(${PROJECT_NAME} SHARED ${SRC})

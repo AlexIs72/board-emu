@@ -16,15 +16,21 @@
 #include "primary/include/djnz.h"
 #include "primary/include/ld.h"
 #include "primary/include/dec.h"
+#include "primary/include/inc.h"
 #include "primary/include/ex.h"
 
-#include "xx80xx/include/out.h"
+//#include "xx80xx/include/out.h"
 
 #include "xxBITxx/include/rl.h"
 #include "xxBITxx/include/rr.h"
 #include "xxBITxx/include/rlc.h"
 #include "xxBITxx/include/rrc.h"
 #include "xxBITxx/include/srl.h"
+
+#include "xxEXTEDxx/include/ld.h"
+#include "xxEXTEDxx/include/cp.h"
+#include "xxEXTEDxx/include/in.h"
+#include "xxEXTEDxx/include/out.h"
 
 
 using namespace emu::z80;
@@ -47,6 +53,7 @@ typedef enum {
 	OR,
 	CP,
 	RST,
+	IN,
 	OUT,
 	DI,
 	EI,
@@ -54,7 +61,9 @@ typedef enum {
 	RRC,
 	RL,
 	RR,
-	SRL
+	SRL,
+	ED_LDx,
+	ED_CPx
 } intstruction_t;
 
 int8_t	primary_instruction_map[] = {
@@ -97,6 +106,51 @@ int8_t	bit_instruction_map[] = {
 /* E */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
 /* F */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1
 };
+
+
+int8_t	extd_instruction_map[] = {
+/*       0         1       2   3    4    5    6    7     8        9        A    B    C    D    E    F */
+/* 0 */  -1,       -1,    -1,  -1,  -1,  -1,  -1,  -1,    -1,     -1,      -1,  -1,  -1,  -1,  -1,  -1,
+/* 1 */  -1,       -1,    -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,
+/* 2 */  -1,       -1,    -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,-1,
+/* 3 */  -1,       -1,    -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,
+/* 4 */  IN,      OUT,    -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* 5 */  IN,      OUT,    -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* 6 */  IN,      OUT,    -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* 7 */  IN,      OUT,    -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* 8 */  -1,      -1,     -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* 9 */  -1,      -1,     -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* A */  ED_LDx,  ED_CPx, IN, OUT,  -1,  -1,  -1,  -1,  ED_LDx,  ED_CPx,  IN,  OUT,   -1,   -1,  -1,  -1,
+/* B */  ED_LDx,  ED_CPx, IN, OUT,  -1,  -1,  -1,  -1,  ED_LDx,  ED_CPx,  IN,  OUT,   -1,   -1,  -1,  -1,
+/* C */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* D */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* E */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* F */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1
+};
+
+
+#if 0
+int8_t	extd_instruction_map[] = {
+/*       0    1    2    3    4    5    6    7    8    9    A    B    C    D    E    F */
+/* 0 */  -1,  -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,
+/* 1 */  -1,  -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,
+/* 2 */  -1,  -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,-1,
+/* 3 */  -1,  -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,
+/* 4 */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* 5 */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* 6 */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* 7 */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* 8 */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* 9 */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* A */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* B */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* C */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* D */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* E */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1,
+/* F */  -1,  -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -1,   -1,  -1,  -1
+};
+
+#endif
 
 
 emu::core::i_instruction *get_primary_instruction(uint32_t value) {
@@ -151,6 +205,9 @@ emu::core::i_instruction *get_primary_instruction(uint32_t value) {
 		case 0x2d:
 		case 0x3d:
 */
+		case INC:
+            instruction = new inc_instruction(value8);
+            break;
 		case DEC:
             instruction = new dec_instruction(value8);
             break;
@@ -259,16 +316,34 @@ emu::core::i_instruction *get_DD_instruction(uint32_t value) {
 	printf("value = 0x%08X; value8 = 0x%02X; value16 = 0x%04X\n", value, value8, value16);
 
 
+
     return instruction;
 }
 
-emu::core::i_instruction *get_xx80xx_instruction(uint32_t value) {
-    uint8_t value8 = ((value & 0xFF000000) >> 24);
-    uint16_t value16 = ((value & 0xFFFF0000) >> 16);
+emu::core::i_instruction *get_xxEXTDxx_instruction(uint32_t value) {
+    uint8_t value8 = ((value & 0x00FF0000) >> 16);
+    uint16_t value16 = ((value & 0x00FFFF00) >> 8);
     emu::core::i_instruction *instruction = NULL;
 
-	value8++;
-	value16++;
+//printf("value = 0x%08X; value8 = 0x%02X; value16 = 0x%04X\n", value, value8, value16);
+
+	switch(extd_instruction_map[value8]) {
+		case ED_LDx:
+            instruction = new ed_ld_instruction(value8, value);
+			break;
+		case ED_CPx:
+            instruction = new ed_cp_instruction(value/*, value*/);
+			break;
+		case IN: 
+            instruction = new ed_in_instruction(value/*, value*/);
+			break;
+		case OUT:
+            instruction = new ed_out_instruction(value/*, value*/);
+			break;
+		default:
+			printf("[get_xxEXTDxx_instruction] value = 0x%08X; value8 = 0x%02X; value16 = 0x%04X; \n", value, value8, value16);
+	}
+
 
     return instruction;
 }
@@ -278,8 +353,7 @@ emu::core::i_instruction *get_FD_instruction(uint32_t value) {
     uint16_t value16 = ((value & 0xFFFF0000) >> 16);
     emu::core::i_instruction *instruction = NULL;
 
-	value8++;
-	value16++;
+	printf("value = 0x%08X; value8 = 0x%02X; value16 = 0x%04X\n", value, value8, value16);
 
     return instruction;
 }
@@ -297,7 +371,7 @@ emu::core::i_instruction *factory::get_instruction(/*emu::z80::memory_cell &cell
 	} else if(prefix == 0xDD) {
 		instruction = get_DD_instruction(value);
 	} else if(prefix == 0xED) {
-		instruction = get_xx80xx_instruction(value);
+		instruction = get_xxEXTDxx_instruction(value);
 	} else if(prefix == 0xFD) {
 		instruction = get_FD_instruction(value);
 	} else {

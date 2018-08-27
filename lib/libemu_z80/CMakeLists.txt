@@ -27,9 +27,10 @@ set(SRC
 	src/instruction/primary/djnz.cpp
 	src/instruction/primary/ld.cpp
 	src/instruction/primary/dec.cpp
+	src/instruction/primary/inc.cpp
 	src/instruction/primary/ex.cpp
 
-	src/instruction/xx80xx/out.cpp
+#	src/instruction/xx80xx/out.cpp
 
 	src/instruction/xxBITxx.cpp
 	src/instruction/xxBITxx/srl.cpp
@@ -37,6 +38,12 @@ set(SRC
 	src/instruction/xxBITxx/rrc.cpp
 	src/instruction/xxBITxx/rl.cpp
 	src/instruction/xxBITxx/rr.cpp
+
+	src/instruction/xxEXTEDxx.cpp
+	src/instruction/xxEXTEDxx/ld.cpp
+	src/instruction/xxEXTEDxx/cp.cpp
+	src/instruction/xxEXTEDxx/in.cpp
+	src/instruction/xxEXTEDxx/out.cpp
 )
 
 #add_library(${PROJECT_NAME} SHARED ${SRC})

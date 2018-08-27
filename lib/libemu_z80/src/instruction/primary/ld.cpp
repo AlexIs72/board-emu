@@ -21,6 +21,120 @@ std::string ld_instruction::to_string() {
 			nn = ((value & 0x00FF0000) >> 16) | (value & 0x0000FF00);	
 			ss << "bc, #" << std::hex << std::setw(4) << std::setfill('0') << nn;
 			break;
+		case 0x11:
+			nn = ((value & 0x00FF0000) >> 16) | (value & 0x0000FF00);	
+			ss << "de, #" << std::hex << std::setw(4) << std::setfill('0') << nn;
+			break;
+		case 0x21:
+			nn = ((value & 0x00FF0000) >> 16) | (value & 0x0000FF00);	
+			ss << "hl, #" << std::hex << std::setw(4) << std::setfill('0') << nn;
+			break;
+		case 0x31:
+			nn = ((value & 0x00FF0000) >> 16) | (value & 0x0000FF00);	
+			ss << "sp, #" << std::hex << std::setw(4) << std::setfill('0') << nn;
+			break;
+		case 0x40:
+			ss << "b, b";
+			break;
+		case 0x41:
+			ss << "b, c";
+			break;
+		case 0x42:
+			ss << "b, d";
+			break;
+		case 0x43:
+			ss << "b, e";
+			break;
+		case 0x44:
+			ss << "b, h";
+			break;
+		case 0x45:
+			ss << "b, l";
+			break;
+		case 0x46:
+			ss << "b, (hl)";
+			break;
+		case 0x47:
+			ss << "b, a";
+			break;
+		case 0x48:
+			ss << "c, b";
+			break;
+		case 0x49:
+			ss << "c, c";
+			break;
+		case 0x4A:
+			ss << "c, d";
+			break;
+		case 0x4B:
+			ss << "c, e";
+			break;
+		case 0x4C:
+			ss << "c, h";
+			break;
+		case 0x4D:
+			ss << "c, l";
+			break;
+		case 0x4E:
+			ss << "c, (hl)";
+			break;
+		case 0x4F:
+			ss << "c, a";
+			break;
+		case 0x50:
+			ss << "d, b";
+			break;
+		case 0x51:
+			ss << "d, c";
+			break;
+		case 0x52:
+			ss << "d, d";
+			break;
+		case 0x53:
+			ss << "d, e";
+			break;
+		case 0x54:
+			ss << "d, h";
+			break;
+		case 0x55:
+			ss << "d, l";
+			break;
+		case 0x56:
+			ss << "d, (hl)";
+			break;
+		case 0x57:
+			ss << "d, a";
+			break;
+		case 0x58:
+			ss << "e, b";
+			break;
+		case 0x59:
+			ss << "e, c";
+			break;
+		case 0x5A:
+			ss << "e, d";
+			break;
+		case 0x5B:
+			ss << "e, e";
+			break;
+		case 0x5C:
+			ss << "e, h";
+			break;
+		case 0x5D:
+			ss << "e, l";
+			break;
+		case 0x5E:
+			ss << "e, (hl)";
+			break;
+		case 0x5F:
+			ss << "e, a";
+			break;
+		case 0x60:
+			ss << "h, b";
+			break;
+		case 0x61:
+			ss << "h, c";
+			break;
 		case 0x06:
 			ss << "b, #" << std::hex << std::setw(2) << std::setfill('0') << nn;
 			break;
@@ -30,12 +144,56 @@ std::string ld_instruction::to_string() {
 		case 0x3e:
 			ss << "a, #" << std::hex << std::setw(2) << std::setfill('0') << nn;
 			break;
+		case 0x70:
+			ss << "(hl), b";
+			break;
+		case 0x71:
+			ss << "(hl), c";
+			break;
+		case 0x72:
+			ss << "(hl), d";
+			break;
+		case 0x73:
+			ss << "(hl), e";
+			break;
+		case 0x74:
+			ss << "(hl), h";
+			break;
+		case 0x75:
+			ss << "(hl), l";
+			break;
+/*		case 0x76:
+			break;*/
+		case 0x77:
+			ss << "(hl), a";
+			break;
 		case 0x78:
-			ss << "a,b";
+			ss << "a, b";
 			break;
-		case 0x4f:
+		case 0x79:
+			ss << "a, c";
+			break;
+		case 0x7A:
+			ss << "a, d";
+			break;
+		case 0x7B:
+			ss << "a, e";
+			break;
+		case 0x7C:
+			ss << "a, h";
+			break;
+		case 0x7D:
+			ss << "a, l";
+			break;
+		case 0x7E:
+			ss << "a, (hl)";
+			break;
+		case 0x7F:
+			ss << "a, a";
+			break;
+/*		case 0x4f:
 			ss << "c,a";
-			break;
+			break;*/
 		default:
 printf("ld: value = 0x%08X; opcode = 0x%02X\n", value, _opcode);
 			ss << "?";
@@ -50,6 +208,9 @@ size_t  ld_instruction::get_size() {
 	size_t size = 1;
 	switch(_opcode) {
         case 0x01:
+        case 0x11:
+        case 0x21:
+		case 0x31:
 			size = 3;
             break;
 		case 0x06:

@@ -26,7 +26,6 @@ void instruction::_init(uint32_t address, uint32_t value) {
 	_address = address;
 	_raw_value = value;
 }
-#endif
 
 template <class T>
 std::string instruction<T>::opcode_to_string() { 
@@ -50,3 +49,4 @@ std::string instruction<T>::opcode_to_string() {
 
     return ss.str();
 }
+#endif

@@ -11,12 +11,9 @@ namespace emu {
                 virtual ~xx80xx_instruction() {}
 		
 				virtual size_t  get_size() { return 2; }
-//				virtual std::string opcode_to_string();
 		
-//				static emu::core::i_instruction *get(/*emu::mips::memory_cell &cell*/uint32_t value);
 			protected:
 				virtual std::string _get_type() { return std::string("xx80xx"); }
-//                virtual std::string to_string() { return std::string("Unknown instruction: COP type"); }
         };
     };
 };

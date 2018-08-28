@@ -13,14 +13,10 @@ namespace emu {
                 ex_instruction(uint8_t opcode, uint32_t value) : primary_instruction(value), _opcode(opcode) {}
                 virtual ~ex_instruction() {}
                 virtual std::string to_string();
-//				virtual std::string opcode_to_string();
 
 				virtual size_t  get_size();
         };
     };
 };
-
-
-//virtual std::string opcode_to_string() { return std::string(); }
 
 #endif

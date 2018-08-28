@@ -11,12 +11,8 @@ namespace emu {
                 ed_out_instruction(uint32_t value) : xx80xx_instruction(value) {}
                 virtual ~ed_out_instruction() {}
                 virtual std::string to_string();
-//				virtual size_t  get_size() {return 2;}
         };
     };
 };
-
-
-//virtual std::string opcode_to_string() { return std::string(); }
 
 #endif

@@ -20,7 +20,4 @@ namespace emu {
     };
 };
 
-
-//virtual std::string opcode_to_string() { return std::string(); }
-
 #endif

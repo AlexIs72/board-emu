@@ -1,15 +1,11 @@
-/*
-#include <iomanip>
-#include <sstream>
-*/
-
 #include <z80/instruction.h>
 
 using namespace emu::z80;
 
 const char *reg_str[][2] = {
-	{"",""}
+       {"",""}
 };
+
 
 /*
 instruction::instruction(emu::z80::memory_cell &cell) : emu::core::instruction(cell.address(), cell.value()) {
@@ -59,8 +55,3 @@ std::string instruction::opcode_to_string() {
 }
 #endif
 
-/*
-void instruction::_init(uint32_t address, uint32_t value) {
-	_address = address;
-	_raw_value = value;
-}*/

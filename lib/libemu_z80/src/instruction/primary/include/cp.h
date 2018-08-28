@@ -12,12 +12,9 @@ namespace emu {
                 virtual ~cp_instruction() {}
                 virtual std::string to_string();
 
-//				virtual size_t  get_size() {return 1;}
         };
     };
 };
 
-
-//virtual std::string opcode_to_string() { return std::string(); }
 
 #endif

@@ -7,6 +7,10 @@ build:	$(TARGET)
 $(TARGET):
 	make -C $(BUILD_DIR)/apps/$(TARGET)	
 
+prepare:
+	mkdir -p $(BUILD_DIR)/apps/$(TARGET) && \
+	cd $(BUILD_DIR)/apps/$(TARGET) && cmake $(CWD)
+
 install:
 	make -C $(BUILD_DIR)/apps/$(TARGET)	install
 

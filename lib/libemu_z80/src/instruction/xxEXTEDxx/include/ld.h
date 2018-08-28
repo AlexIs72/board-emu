@@ -7,11 +7,8 @@
 namespace emu {
     namespace z80 {
         class ed_ld_instruction : public xxEXTEDxx_instruction {
-			private:
-				uint8_t _opcode;
-
             public:
-                ed_ld_instruction(uint8_t opcode, uint32_t value) : xxEXTEDxx_instruction(value), _opcode(opcode) {}
+                ed_ld_instruction(uint32_t value) : xxEXTEDxx_instruction(value) {}
                 virtual ~ed_ld_instruction() {}
                 virtual std::string to_string();
         };

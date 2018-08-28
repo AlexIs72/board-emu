@@ -38,8 +38,7 @@ namespace emu {
 
 		class sb_instruction : public save_instruction {
 			public:
-				sb_instruction(uint32_t value) : save_instruction(value) {
-				}
+				sb_instruction(uint32_t value) : save_instruction(value) { }
 				virtual ~sb_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "sb"; }
@@ -47,8 +46,7 @@ namespace emu {
 
 		class sbu_instruction : public save_instruction {
 			public:
-				sbu_instruction(uint32_t value) : save_instruction(value) {
-				}
+				sbu_instruction(uint32_t value) : save_instruction(value) {	}
 				virtual ~sbu_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "sbu"; }
@@ -56,8 +54,7 @@ namespace emu {
 
 		class sh_instruction : public save_instruction {
 			public:
-				sh_instruction(uint32_t value) : save_instruction(value) {
-				}
+				sh_instruction(uint32_t value) : save_instruction(value) { }
 				virtual ~sh_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "sh"; }
@@ -65,8 +62,7 @@ namespace emu {
 
 		class shu_instruction : public save_instruction {
 			public:
-				shu_instruction(uint32_t value) : save_instruction(value) {
-				}
+				shu_instruction(uint32_t value) : save_instruction(value) {	}
 				virtual ~shu_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "shu"; }
@@ -74,8 +70,7 @@ namespace emu {
 
 		class sw_instruction : public save_instruction {
 			public:
-				sw_instruction(uint32_t value) : save_instruction(value) {
-				}
+				sw_instruction(uint32_t value) : save_instruction(value) { }
 				virtual ~sw_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "sw"; }
@@ -83,8 +78,7 @@ namespace emu {
 
 		class swl_instruction : public save_instruction {
 			public:
-				swl_instruction(uint32_t value) : save_instruction(value) {
-				}
+				swl_instruction(uint32_t value) : save_instruction(value) {	}
 				virtual ~swl_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "swl"; }
@@ -92,8 +86,7 @@ namespace emu {
 
 		class swr_instruction : public save_instruction {
 			public:
-				swr_instruction(uint32_t value) : save_instruction(value) {
-				}
+				swr_instruction(uint32_t value) : save_instruction(value) {	}
 				virtual ~swr_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "swr"; }

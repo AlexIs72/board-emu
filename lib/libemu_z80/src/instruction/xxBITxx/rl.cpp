@@ -8,10 +8,8 @@ using namespace emu::z80;
 std::string cb_rl_instruction::to_string() { 
 	std::stringstream ss;
 	uint32_t value =  _get_raw_value();
-	uint8_t	opcode = (value & 0x00FF0000) >> 16;
-//	int	nn = (value & 0x000000FF);
+	uint8_t	opcode = _get_opcode(); //(value & 0x00FF0000) >> 16;
 
-//printf("[cb_rl_instruction] value = 0x%04X; opcode = 0x%04X\n", value, opcode);
 
 //http://z80-heaven.wikidot.com/instructions-set:out
 
@@ -43,6 +41,7 @@ std::string cb_rl_instruction::to_string() {
 			ss << "a";
 			break;
 		default:
+printf("[cb_rl_instruction] value = 0x%04X; opcode = 0x%04X\n", value, opcode);
 			ss << "?";
 	}
 

@@ -7,15 +7,13 @@
 namespace emu {
     namespace z80 {
         class ld_instruction : public primary_instruction {
-			private:
-				uint8_t _opcode;
             public:
-                ld_instruction(uint8_t opcode, uint32_t value) : primary_instruction(value), _opcode(opcode) {}
+                ld_instruction(uint32_t value) : primary_instruction(value) {}
                 virtual ~ld_instruction() {}
                 virtual std::string to_string();
 				virtual std::string opcode_to_string();
 
-				virtual size_t  get_size();
+				virtual inline size_t  get_size() const ;
         };
     };
 };

@@ -5,6 +5,8 @@
 
 using namespace emu::z80;
 
+#if 0
+
 std::string xxEXTEDxx_instruction::opcode_to_string()  {
     std::stringstream ss;
     size_t  size = get_size();
@@ -21,3 +23,5 @@ std::string xxEXTEDxx_instruction::opcode_to_string()  {
 
     return emu::core::instruction<uint32_t>::opcode_to_string();
 }
+
+#endif

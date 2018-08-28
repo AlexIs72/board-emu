@@ -8,7 +8,7 @@ namespace emu {
     namespace z80 {
         class cp_instruction : public primary_instruction {
             public:
-                cp_instruction(uint8_t value) : primary_instruction(value) {}
+                cp_instruction(uint32_t value) : primary_instruction(value) {}
                 virtual ~cp_instruction() {}
                 virtual std::string to_string();
 

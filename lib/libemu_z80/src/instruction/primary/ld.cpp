@@ -8,6 +8,7 @@ using namespace emu::z80;
 std::string ld_instruction::to_string() { 
 	std::stringstream ss;
 	uint32_t value =  _get_raw_value();
+	uint8_t opcode = _get_opcode();
 //	uint8_t	opcode = (value & 0x0000FF00) >> 8;
 //	uint8_t	value2 = (value & 0x0000FF00) >> 8;
 //	int	nn = (value & 0x000000FF);
@@ -15,22 +16,26 @@ std::string ld_instruction::to_string() {
 
 
 	ss  << "ld "; 
-	nn = ((value & 0x00FF0000) >> 16);	
-	switch(_opcode) {
+	nn = _get_byte_value(); //((value & 0x00FF0000) >> 16);	
+	switch(opcode) {
 		case 0x01:
-			nn = ((value & 0x00FF0000) >> 16) | (value & 0x0000FF00);	
+//			nn = ((value & 0x00FF0000) >> 16) | (value & 0x0000FF00);	
+			nn = _get_halfword_value();
 			ss << "bc, #" << std::hex << std::setw(4) << std::setfill('0') << nn;
 			break;
 		case 0x11:
-			nn = ((value & 0x00FF0000) >> 16) | (value & 0x0000FF00);	
+//			nn = ((value & 0x00FF0000) >> 16) | (value & 0x0000FF00);	
+			nn = _get_halfword_value();
 			ss << "de, #" << std::hex << std::setw(4) << std::setfill('0') << nn;
 			break;
 		case 0x21:
-			nn = ((value & 0x00FF0000) >> 16) | (value & 0x0000FF00);	
+//			nn = ((value & 0x00FF0000) >> 16) | (value & 0x0000FF00);	
+			nn = _get_halfword_value();
 			ss << "hl, #" << std::hex << std::setw(4) << std::setfill('0') << nn;
 			break;
 		case 0x31:
-			nn = ((value & 0x00FF0000) >> 16) | (value & 0x0000FF00);	
+//			nn = ((value & 0x00FF0000) >> 16) | (value & 0x0000FF00);	
+			nn = _get_halfword_value();
 			ss << "sp, #" << std::hex << std::setw(4) << std::setfill('0') << nn;
 			break;
 		case 0x40:
@@ -195,7 +200,7 @@ std::string ld_instruction::to_string() {
 			ss << "c,a";
 			break;*/
 		default:
-printf("ld: value = 0x%08X; opcode = 0x%02X\n", value, _opcode);
+printf("ld: value = 0x%08X; opcode = 0x%02X\n", value, opcode);
 			ss << "?";
 //			return ss.str();
 	}
@@ -204,9 +209,11 @@ printf("ld: value = 0x%08X; opcode = 0x%02X\n", value, _opcode);
 	return ss.str();
 }
 
-size_t  ld_instruction::get_size() {
+size_t  ld_instruction::get_size() const {
 	size_t size = 1;
-	switch(_opcode) {
+	uint8_t opcode = _get_opcode();
+
+	switch(opcode) {
         case 0x01:
         case 0x11:
         case 0x21:
@@ -222,6 +229,10 @@ size_t  ld_instruction::get_size() {
 	return size;
 }
 
+
+/*
+TODO
+*/
 
 std::string ld_instruction::opcode_to_string()  {
 	std::stringstream ss;

@@ -43,10 +43,10 @@ namespace emu {
 				static emu::core::i_instruction *get(/*emu::mips::memory_cell &cell*/uint32_t value);
 			protected:
 
-				inline uint8_t _get_opcode() { return _type_format.format.o; }
-				inline uint8_t _get_s_reg() { return _type_format.format.s; }
-				inline uint8_t _get_t_reg() { return _type_format.format.t; }
-				inline uint16_t _get_immediate_data() { return _type_format.format.i; }
+				inline uint8_t _get_opcode() const { return _type_format.format.o; }
+				inline uint8_t _get_s_reg() const { return _type_format.format.s; }
+				inline uint8_t _get_t_reg() const { return _type_format.format.t; }
+				inline uint16_t _get_immediate_data() const { return _type_format.format.i; }
 
 				virtual std::string _get_type() { return std::string("IMMEDIATE"); }
         };

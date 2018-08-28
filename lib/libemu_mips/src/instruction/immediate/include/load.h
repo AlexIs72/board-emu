@@ -37,8 +37,7 @@ namespace emu {
 
 		class lb_instruction : public load_instruction {
 			public:
-				lb_instruction(uint32_t value) : load_instruction(value) {
-				}
+				lb_instruction(uint32_t value) : load_instruction(value) {}
 				virtual ~lb_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "lb"; }
@@ -46,8 +45,7 @@ namespace emu {
 
 		class lbu_instruction : public load_instruction {
 			public:
-				lbu_instruction(uint32_t value) : load_instruction(value) {
-				}
+				lbu_instruction(uint32_t value) : load_instruction(value) {	}
 				virtual ~lbu_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "lbu"; }
@@ -55,8 +53,7 @@ namespace emu {
 
 		class lh_instruction : public load_instruction {
 			public:
-				lh_instruction(uint32_t value) : load_instruction(value) {
-				}
+				lh_instruction(uint32_t value) : load_instruction(value) { }
 				virtual ~lh_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "lh"; }
@@ -64,8 +61,7 @@ namespace emu {
 
 		class lhu_instruction : public load_instruction {
 			public:
-				lhu_instruction(uint32_t value) : load_instruction(value) {
-				}
+				lhu_instruction(uint32_t value) : load_instruction(value) {	}
 				virtual ~lhu_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "lhu"; }
@@ -73,8 +69,7 @@ namespace emu {
 
 		class lw_instruction : public load_instruction {
 			public:
-				lw_instruction(uint32_t value) : load_instruction(value) {
-				}
+				lw_instruction(uint32_t value) : load_instruction(value) { }
 				virtual ~lw_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "lw"; }
@@ -82,8 +77,7 @@ namespace emu {
 
 		class lwl_instruction : public load_instruction {
 			public:
-				lwl_instruction(uint32_t value) : load_instruction(value) {
-				}
+				lwl_instruction(uint32_t value) : load_instruction(value) {	}
 				virtual ~lwl_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "lwl"; }
@@ -91,8 +85,7 @@ namespace emu {
 
 		class lwr_instruction : public load_instruction {
 			public:
-				lwr_instruction(uint32_t value) : load_instruction(value) {
-				}
+				lwr_instruction(uint32_t value) : load_instruction(value) {	}
 				virtual ~lwr_instruction() {}
 		    protected:
 				virtual const char *_get_title() { return "lwr"; }

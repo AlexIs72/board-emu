@@ -8,7 +8,7 @@ namespace emu {
     namespace z80 {
         class di_instruction : public primary_instruction {
             public:
-                di_instruction() : primary_instruction(0xF3) {}
+                di_instruction() : primary_instruction(0xF3000000) {}
                 virtual ~di_instruction() {}
                 virtual std::string to_string();
         };

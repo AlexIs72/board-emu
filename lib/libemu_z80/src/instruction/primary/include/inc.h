@@ -8,11 +8,9 @@ namespace emu {
     namespace z80 {
         class inc_instruction : public primary_instruction {
             public:
-                inc_instruction(uint8_t value) : primary_instruction(value) {}
+                inc_instruction(uint32_t value) : primary_instruction(value) {}
                 virtual ~inc_instruction() {}
                 virtual std::string to_string();
-
-//				virtual size_t  get_size() {return 1;}
         };
     };
 };

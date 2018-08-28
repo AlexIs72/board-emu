@@ -16,7 +16,7 @@ namespace emu {
 			public:
 				virtual std::string to_string() = 0;
 				virtual std::string opcode_to_string() = 0 /* { return std::string()}*/;
-				virtual size_t	get_size() = 0;
+				virtual size_t	get_size() const = 0;
 		};
 
 		template <typename T> 
@@ -32,23 +32,34 @@ namespace emu {
 				virtual ~instruction() {}
 
 				virtual std::string to_string() { return std::string(); }
+
 				virtual std::string opcode_to_string()  {
     				std::stringstream ss;
     				size_t  size = get_size();
     				uint32_t value = _get_raw_value();
-
+//printf("===> [0]value = %04X, size = %ld\n", value, size);
     				if(size == 4) {
         				ss << std::hex << std::setfill('0') << std::internal << std::setw(2) << ((value & 0xFF000000) >> 24) << " ";
+						value <<= 8;
     				}
+//printf("===> [1]value = %04X, size = %ld\n", value, size);
     				if(size >= 3) {
         				ss << std::hex << std::setfill('0') << std::internal << std::setw(2) << ((value & 0xFF000000) >> 24) << " ";
-						value >>= 8;
+//						value >>= 8;
+						value <<= 8;
+					
     				}
+//printf("===> [2]value = %04X, size = %ld\n", value, size);
     				if(size >= 2) {
-        				ss << std::hex << std::setfill('0') << std::internal << std::setw(2) << ((value & 0x0000FF00) >> 8) << " ";
+//        				ss << std::hex << std::setfill('0') << std::internal << std::setw(2) << ((value & 0x0000FF00) >> 8) << " ";
+        				ss << std::hex << std::setfill('0') << std::internal << std::setw(2) << ((value & 0xFF000000) >> 24) << " ";
+						value <<= 8;
     				}
+//printf("===> [3]value = %04X, size = %ld\n", value, size);
     				if(size >= 1) {
-        				ss << std::hex << std::setfill('0') << std::internal << std::setw(2) << (value & 0x000000FF);
+//        				ss << std::hex << std::setfill('0') << std::internal << std::setw(2) << (value & 0x000000FF);
+        				ss << std::hex << std::setfill('0') << std::internal << std::setw(2) << ((value & 0xFF000000) >> 24) << " ";
+						value <<= 8;
     				}
 
     				return ss.str();
@@ -58,7 +69,9 @@ namespace emu {
 //				inline T get_raw_value() { return _raw_value; }
 
 			protected:
-				virtual inline T	_get_raw_value() { return _raw_value; }
+				virtual inline T	_get_raw_value() const { 
+					return _raw_value; 
+				}
 //				virtual inline uint32_t _get_address() { return _address; }
 
 			private:
@@ -73,7 +86,9 @@ namespace emu {
 				unknown_instruction(uint32_t value) : instruction(value) {};
 				virtual ~unknown_instruction() {};
 				std::string to_string() { return std::string("Unknown instruction"); }
-				virtual size_t  get_size() {return 1;}
+				virtual inline size_t  get_size() const {
+					return 1;
+				}
 		};
 	};
 };

@@ -8,13 +8,12 @@ using namespace emu::z80;
 std::string ed_ld_instruction::to_string() { 
 	std::stringstream ss;
 	uint32_t value =  _get_raw_value();
-//	uint8_t opcode = (value & 0xFF000000) >> 24;
-//	int nn;
+	uint8_t opcode = _get_opcode();
 
 
 //	ss  << "ld "; 
 //	nn = ((value & 0x00FF0000) >> 16);	
-	switch(_opcode) {
+	switch(opcode) {
 		case 0xA0:
 			ss << "ldi";
 			break;
@@ -66,7 +65,7 @@ std::string ed_ld_instruction::to_string() {
 			break;
 */
 		default:
-printf("ed_ld: value = 0x%08X; opcode = 0x%02X\n", value, _opcode);
+printf("ed_ld: value = 0x%08X; opcode = 0x%02X\n", value, opcode);
 			ss << "?";
 //			return ss.str();
 	}

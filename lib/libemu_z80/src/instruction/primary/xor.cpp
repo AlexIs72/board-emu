@@ -8,12 +8,7 @@ using namespace emu::z80;
 std::string xor_instruction::to_string() { 
 	std::stringstream ss;
 	uint32_t value =  _get_raw_value();
-	uint8_t	opcode = (value & 0x000000FF);
-//	int	nn = (value & 0x000000FF);
-/*
-*/
-
-//printf("value = 0x%02X; opcode = 0x%02X, nn = 0x%02X\n", value, opcode, nn);
+	uint8_t	opcode = _get_opcode(); //(value & 0x000000FF);
 
 //http://z80-heaven.wikidot.com/instructions-set:xor
 
@@ -48,6 +43,7 @@ std::string xor_instruction::to_string() {
 			ss << "x";
 			break;
         default:
+printf("xor: value = 0x%02X; opcode = 0x%02X\n", value, opcode);
             ss << "?";
 	}
 

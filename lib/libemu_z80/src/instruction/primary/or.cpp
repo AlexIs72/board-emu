@@ -7,19 +7,13 @@ using namespace emu::z80;
 
 std::string or_instruction::to_string() { 
 	std::stringstream ss;
-//	uint32_t value =  _get_raw_value();
-//	uint8_t	opcode = (value & 0x000000FF);
-//	int	nn = (value & 0x000000FF);
-/*
-*/
-
-//printf("value = 0x%02X; opcode = 0x%02X, nn = 0x%02X\n", value, opcode, nn);
+	uint8_t opcode = _get_opcode();
 
 //http://z80-heaven.wikidot.com/instructions-set:or
 
 	ss  << "or "; 
 
-	switch(_opcode) {
+	switch(opcode) {
 		case 0xb0:
 			ss << "b";
 			break;
@@ -45,15 +39,18 @@ std::string or_instruction::to_string() {
 			ss << "a";
 			break;
         default:
+printf("or: value = 0x%02X; opcode = 0x%02X\n", _get_raw_value(), opcode);
             ss << "?";
 	}
 
 	return ss.str();
 }
 
-size_t  or_instruction::get_size() {
+size_t  or_instruction::get_size() const {
     size_t size = 1;
-    switch(_opcode) {
+	uint8_t opcode = _get_opcode();
+
+    switch(opcode) {
         case 0xF6:
             size = 2;
             break;

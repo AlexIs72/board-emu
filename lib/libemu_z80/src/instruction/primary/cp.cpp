@@ -7,13 +7,9 @@ using namespace emu::z80;
 
 std::string cp_instruction::to_string() { 
 	std::stringstream ss;
-	uint32_t value =  _get_raw_value();
-	uint8_t	opcode = (value & 0x000000FF);
-//	int	nn = (value & 0x000000FF);
-/*
-*/
+//	uint32_t value =  _get_raw_value();
+	uint8_t	opcode = _get_opcode(); //(value & 0x000000FF);
 
-//printf("value = 0x%02X; opcode = 0x%02X, nn = 0x%02X\n", value, opcode, nn);
 
 //http://z80-heaven.wikidot.com/instructions-set:cp
 
@@ -21,6 +17,7 @@ std::string cp_instruction::to_string() {
 
 	switch(opcode) {
 		default:
+printf("cp: value = 0x%02X; opcode = 0x%02X\n", _get_raw_value(), opcode);
 			ss << "?";
 	}
 

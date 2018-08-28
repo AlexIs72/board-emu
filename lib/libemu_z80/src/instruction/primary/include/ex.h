@@ -7,14 +7,12 @@
 namespace emu {
     namespace z80 {
         class ex_instruction : public primary_instruction {
-			private:
-				uint8_t _opcode;
             public:
-                ex_instruction(uint8_t opcode, uint32_t value) : primary_instruction(value), _opcode(opcode) {}
+                ex_instruction(uint32_t value) : primary_instruction(value) {}
                 virtual ~ex_instruction() {}
                 virtual std::string to_string();
 
-				virtual size_t  get_size();
+				virtual size_t  get_size() const;
         };
     };
 };

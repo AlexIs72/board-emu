@@ -8,11 +8,9 @@ namespace emu {
     namespace z80 {
         class xor_instruction : public primary_instruction {
             public:
-                xor_instruction(uint8_t value) : primary_instruction(value) {}
+                xor_instruction(uint32_t value) : primary_instruction(value) {}
                 virtual ~xor_instruction() {}
                 virtual std::string to_string();
-
-//				virtual size_t  get_size() {return 1;}
         };
     };
 };

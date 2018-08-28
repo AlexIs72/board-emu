@@ -7,9 +7,9 @@ using namespace emu::z80;
 
 std::string jr_instruction::to_string() { 
 	std::stringstream ss;
-	uint32_t value =  _get_raw_value();
-	uint8_t	opcode = (value & 0x0000FF00) >> 8;
-	char	nn = (value & 0x000000FF);
+//	uint32_t value =  _get_raw_value();
+	uint8_t	opcode = _get_opcode(); //(value & 0x0000FF00) >> 8;
+	int8_t	nn = (int8_t)_get_byte_value(); //(value & 0x000000FF);
 /*
 JP NN        ;no contition
 JR C,NN        ;jumps if C is set
@@ -18,13 +18,12 @@ JR Z,NN        ;jumps if Z is set
 JR NZ,NN    ;jumps if Z is reset
 */
 
-//printf("value = 0x%02X; opcode = 0x%02X, nn = 0x%02X\n", value, opcode, nn);
 
 	ss  << "jr "; 
 	switch(opcode) {
-		case 0x18:		// jr x
+/*		case 0x18:		// jr x
 //			ss << nn;
-			break;
+			break;*/
 		case 0x20:	// jr nz,x
 			ss << "nz, ";
 			break;
@@ -38,6 +37,7 @@ JR NZ,NN    ;jumps if Z is reset
 			ss << "c, ";
 			break;
 		default:
+printf("jr: value = 0x%02X; opcode = 0x%02X, nn = 0x%02X\n", _get_raw_value(), opcode, nn);
 			ss << "?";
 			return ss.str();
 	}

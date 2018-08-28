@@ -4,11 +4,11 @@ using namespace emu::z80;
 
 std::string dec_instruction::to_string() { 
     std::stringstream ss;
-    uint32_t value =  _get_raw_value();
+	uint32_t opcode =  _get_opcode();
 
 	ss  << "dec ";
 
-	switch(value) {
+	switch(opcode) {
         case 0x05:
 			ss << "b";
 			break;
@@ -46,6 +46,7 @@ std::string dec_instruction::to_string() {
 			ss << "a";
 			break;
 		default:
+printf("dec: value = 0x%08X; opcode = 0x%02X\n", _get_raw_value(), opcode);
 			ss << "?";
 			break;
 	}

@@ -8,12 +8,10 @@ using namespace emu::z80;
 std::string rst_instruction::to_string() { 
 	std::stringstream ss;
 	uint32_t value =  _get_raw_value();
-	uint8_t	opcode = (value & 0x000000FF);
-//	int	nn = (value & 0x000000FF);
+	uint8_t	opcode = _get_opcode(); //(value & 0x000000FF);
 /*
 */
 
-//printf("value = 0x%02X; opcode = 0x%02X, nn = 0x%02X\n", value, opcode, nn);
 
 /*
         case 0xC7:
@@ -55,6 +53,7 @@ std::string rst_instruction::to_string() {
 			ss << "38h";
 			break;
         default:
+printf("rst: value = 0x%02X; opcode = 0x%02X\n", value, opcode);
             ss << "?";
 	}
 

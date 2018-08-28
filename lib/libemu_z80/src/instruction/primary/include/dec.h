@@ -8,7 +8,7 @@ namespace emu {
     namespace z80 {
         class dec_instruction : public primary_instruction {
             public:
-                dec_instruction(uint8_t value) : primary_instruction(value) {}
+                dec_instruction(uint32_t value) : primary_instruction(value) {}
                 virtual ~dec_instruction() {}
                 virtual std::string to_string();
         };

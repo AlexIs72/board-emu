@@ -21,9 +21,9 @@ JR NZ,NN    ;jumps if Z is reset
 
 	ss  << "jr "; 
 	switch(opcode) {
-/*		case 0x18:		// jr x
+		case 0x18:		// jr x
 //			ss << nn;
-			break;*/
+			break;		
 		case 0x20:	// jr nz,x
 			ss << "nz, ";
 			break;

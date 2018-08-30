@@ -1,0 +1,239 @@
+make -C /home/alexey/projects/board-emu/build/apps/speccy-emu	
+make[1]: Entering directory '/home/alexey/projects/board-emu/build/apps/speccy-emu'
+make[2]: Entering directory '/home/alexey/projects/board-emu/build/apps'
+make[3]: Entering directory '/home/alexey/projects/board-emu/build/apps'
+make[3]: Leaving directory '/home/alexey/projects/board-emu/build/apps'
+[100%] Built target speccy-emu
+make[2]: Leaving directory '/home/alexey/projects/board-emu/build/apps'
+make[1]: Leaving directory '/home/alexey/projects/board-emu/build/apps/speccy-emu'
+/home/alexey/projects/board-emu/build/apps/speccy-emu/speccy-emu /home/alexey/projects/board-emu/build/../dumps/zx_spectrum/tests/TEST48.BIN
+Memory block with size 260 loaded to address 0
+0000    f3              1    di
+0001    18 62           2    jr 0x62
+0003    ff              1    rst 38h
+0004    ff              1    rst 38h
+0005    ff              1    rst 38h
+0006    ff              1    rst 38h
+0007    ff              1    rst 38h
+0008    ff              1    rst 38h
+0009    ff              1    rst 38h
+000a    ff              1    rst 38h
+000b    ff              1    rst 38h
+000c    ff              1    rst 38h
+000d    ff              1    rst 38h
+000e    ff              1    rst 38h
+000f    ff              1    rst 38h
+0010    ff              1    rst 38h
+0011    ff              1    rst 38h
+0012    ff              1    rst 38h
+0013    ff              1    rst 38h
+0014    ff              1    rst 38h
+0015    ff              1    rst 38h
+0016    ff              1    rst 38h
+0017    ff              1    rst 38h
+0018    ff              1    rst 38h
+0019    ff              1    rst 38h
+001a    ff              1    rst 38h
+001b    ff              1    rst 38h
+001c    ff              1    rst 38h
+001d    ff              1    rst 38h
+001e    ff              1    rst 38h
+001f    ff              1    rst 38h
+0020    ff              1    rst 38h
+0021    ff              1    rst 38h
+0022    ff              1    rst 38h
+0023    ff              1    rst 38h
+0024    ff              1    rst 38h
+0025    ff              1    rst 38h
+0026    ff              1    rst 38h
+0027    ff              1    rst 38h
+0028    ff              1    rst 38h
+0029    ff              1    rst 38h
+002a    ff              1    rst 38h
+002b    ff              1    rst 38h
+002c    ff              1    rst 38h
+002d    ff              1    rst 38h
+002e    ff              1    rst 38h
+002f    ff              1    rst 38h
+0030    ff              1    rst 38h
+0031    ff              1    rst 38h
+0032    ff              1    rst 38h
+0033    ff              1    rst 38h
+0034    ff              1    rst 38h
+0035    ff              1    rst 38h
+0036    ff              1    rst 38h
+0037    ff              1    rst 38h
+0038    f3              1    di
+0039    af              1    xor a
+003a    d3 fe           2    out (#fe),a
+003c    01 57 04        3    ld bc, #0457
+003f    0b              1    dec bc
+0040    78              1    Unknown instruction
+0041    b1              1    Unknown instruction
+0042    20 fb           2    jr nz, 0xfb
+0044    3e              1    Unknown instruction
+0045    ff              1    rst 38h
+0046    d3 fe           2    out (#fe),a
+0048    08              1    Unknown instruction
+0049    4f              1    Unknown instruction
+004a    08              1    Unknown instruction
+004b    16              1    Unknown instruction
+004c    08              1    Unknown instruction
+004d    3e              1    Unknown instruction
+004e    ff              1    rst 38h
+004f    d3 fe           2    out (#fe),a
+0051    06              1    Unknown instruction
+0052    c8              1    Unknown instruction
+0053    cb              1    Unknown instruction
+0054    39              1    Unknown instruction
+0055    cb              1    Unknown instruction
+0056    18 10           2    jr 0x10
+0058    fe              1    Unknown instruction
+0059    af              1    xor a
+005a    d3 fe           2    out (#fe),a
+005c    06              1    Unknown instruction
+005d    20 10           2    jr nz, 0x10
+005f    fe              1    Unknown instruction
+0060    15              1    dec d
+0061    20 ea           2    jr nz, 0xea
+0063    fb              1    Unknown instruction
+0064    76              1    Unknown instruction
+0065    f3              1    di
+0066    31              1    Unknown instruction
+0067    00              1    nop
+0068    00              1    nop
+0069    af              1    xor a
+006a    08              1    Unknown instruction
+006b    21              1    Unknown instruction
+006c    00              1    nop
+006d    40              1    Unknown instruction
+006e    11              1    Unknown instruction
+006f    01 40 01        3    ld bc, #0140
+0072    00              1    nop
+0073    40              1    Unknown instruction
+0074    3e              1    Unknown instruction
+0075    00              1    nop
+0076    77              1    Unknown instruction
+0077    ed              1    Unknown instruction
+0078    b0              1    Unknown instruction
+0079    21              1    Unknown instruction
+007a    00              1    nop
+007b    40              1    Unknown instruction
+007c    01 00 40        3    ld bc, #4000
+007f    16              1    Unknown instruction
+0080    00              1    nop
+0081    af              1    xor a
+0082    ae              1    xor (hl)
+0083    b2              1    Unknown instruction
+0084    57              1    Unknown instruction
+0085    23              1    Unknown instruction
+0086    0b              1    dec bc
+0087    78              1    Unknown instruction
+0088    b1              1    Unknown instruction
+0089    20 f6           2    jr nz, 0xf6
+008b    08              1    Unknown instruction
+008c    7a              1    Unknown instruction
+008d    08              1    Unknown instruction
+008e    21              1    Unknown instruction
+008f    00              1    nop
+0090    40              1    Unknown instruction
+0091    11              1    Unknown instruction
+0092    01 40 01        3    ld bc, #0140
+0095    00              1    nop
+0096    40              1    Unknown instruction
+0097    3e              1    Unknown instruction
+0098    ff              1    rst 38h
+0099    77              1    Unknown instruction
+009a    ed              1    Unknown instruction
+009b    b0              1    Unknown instruction
+009c    21              1    Unknown instruction
+009d    00              1    nop
+009e    40              1    Unknown instruction
+009f    01 00 40        3    ld bc, #4000
+00a2    16              1    Unknown instruction
+00a3    00              1    nop
+00a4    3e              1    Unknown instruction
+00a5    ff              1    rst 38h
+00a6    ae              1    xor (hl)
+00a7    b2              1    Unknown instruction
+00a8    57              1    Unknown instruction
+00a9    23              1    Unknown instruction
+00aa    0b              1    dec bc
+00ab    78              1    Unknown instruction
+00ac    b1              1    Unknown instruction
+00ad    20 f5           2    jr nz, 0xf5
+00af    08              1    Unknown instruction
+00b0    b2              1    Unknown instruction
+00b1    08              1    Unknown instruction
+00b2    21              1    Unknown instruction
+00b3    00              1    nop
+00b4    40              1    Unknown instruction
+00b5    11              1    Unknown instruction
+00b6    01 40 01        3    ld bc, #0140
+00b9    00              1    nop
+00ba    40              1    Unknown instruction
+00bb    3e              1    Unknown instruction
+00bc    55              1    Unknown instruction
+00bd    77              1    Unknown instruction
+00be    ed              1    Unknown instruction
+00bf    b0              1    Unknown instruction
+00c0    21              1    Unknown instruction
+00c1    00              1    nop
+00c2    40              1    Unknown instruction
+00c3    01 00 40        3    ld bc, #4000
+00c6    16              1    Unknown instruction
+00c7    00              1    nop
+00c8    3e              1    Unknown instruction
+00c9    55              1    Unknown instruction
+00ca    ae              1    xor (hl)
+00cb    b2              1    Unknown instruction
+00cc    57              1    Unknown instruction
+00cd    23              1    Unknown instruction
+00ce    0b              1    dec bc
+00cf    78              1    Unknown instruction
+00d0    b1              1    Unknown instruction
+00d1    20 f5           2    jr nz, 0xf5
+00d3    08              1    Unknown instruction
+00d4    b2              1    Unknown instruction
+00d5    08              1    Unknown instruction
+00d6    21              1    Unknown instruction
+00d7    00              1    nop
+00d8    40              1    Unknown instruction
+00d9    11              1    Unknown instruction
+00da    01 40 01        3    ld bc, #0140
+00dd    00              1    nop
+00de    40              1    Unknown instruction
+00df    3e              1    Unknown instruction
+00e0    aa              1    xor d
+00e1    77              1    Unknown instruction
+00e2    ed              1    Unknown instruction
+00e3    b0              1    Unknown instruction
+00e4    21              1    Unknown instruction
+00e5    00              1    nop
+00e6    40              1    Unknown instruction
+00e7    01 00 40        3    ld bc, #4000
+00ea    16              1    Unknown instruction
+00eb    00              1    nop
+00ec    3e              1    Unknown instruction
+00ed    aa              1    xor d
+00ee    ae              1    xor (hl)
+00ef    b2              1    Unknown instruction
+00f0    57              1    Unknown instruction
+00f1    23              1    Unknown instruction
+00f2    0b              1    dec bc
+00f3    78              1    Unknown instruction
+00f4    b1              1    Unknown instruction
+00f5    20 f5           2    jr nz, 0xf5
+00f7    08              1    Unknown instruction
+00f8    b2              1    Unknown instruction
+00f9    08              1    Unknown instruction
+00fa    fb              1    Unknown instruction
+00fb    76              1    Unknown instruction
+00fc    ff              1    rst 38h
+00fd    ff              1    rst 38h
+00fe    ff              1    rst 38h
+00ff    ff              1    rst 38h
+0100    ff              1    rst 38h
+0101    ff              1    rst 38h
+0102    ff              1    rst 38h
+0103    ff              1    rst 38h

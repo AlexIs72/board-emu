@@ -12,6 +12,7 @@ add_definitions(-std=c++11 -ggdb)
 set(SRC
 #	core
 #	src/core/instruction_processor.cpp
+	src/board.cpp
 	src/memory/segment.cpp
 #	src/instruction.cpp
 #	src/core/memory_block_iterator.cpp

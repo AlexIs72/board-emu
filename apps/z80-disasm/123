@@ -1,0 +1,191 @@
+make -C /home/alexey/projects/board-emu/build/apps/speccy-emu	
+make[1]: Entering directory '/home/alexey/projects/board-emu/build/apps/speccy-emu'
+make[2]: Entering directory '/home/alexey/projects/board-emu/build/apps'
+make[3]: Entering directory '/home/alexey/projects/board-emu/build/apps'
+make[3]: Leaving directory '/home/alexey/projects/board-emu/build/apps'
+[100%] Built target speccy-emu
+make[2]: Leaving directory '/home/alexey/projects/board-emu/build/apps'
+make[1]: Leaving directory '/home/alexey/projects/board-emu/build/apps/speccy-emu'
+/home/alexey/projects/board-emu/build/apps/speccy-emu/speccy-emu /home/alexey/projects/board-emu/build/../dumps/zx_spectrum/tests/TEST48.BIN
+Memory block with size 260 loaded to address 0
+0000    f3              1    di
+0001    18 62           2    jr 98
+0003    ff              1    rst 38h
+0004    ff              1    rst 38h
+0005    ff              1    rst 38h
+0006    ff              1    rst 38h
+0007    ff              1    rst 38h
+0008    ff              1    rst 38h
+0009    ff              1    rst 38h
+000a    ff              1    rst 38h
+000b    ff              1    rst 38h
+000c    ff              1    rst 38h
+000d    ff              1    rst 38h
+000e    ff              1    rst 38h
+000f    ff              1    rst 38h
+0010    ff              1    rst 38h
+0011    ff              1    rst 38h
+0012    ff              1    rst 38h
+0013    ff              1    rst 38h
+0014    ff              1    rst 38h
+0015    ff              1    rst 38h
+0016    ff              1    rst 38h
+0017    ff              1    rst 38h
+0018    ff              1    rst 38h
+0019    ff              1    rst 38h
+001a    ff              1    rst 38h
+001b    ff              1    rst 38h
+001c    ff              1    rst 38h
+001d    ff              1    rst 38h
+001e    ff              1    rst 38h
+001f    ff              1    rst 38h
+0020    ff              1    rst 38h
+0021    ff              1    rst 38h
+0022    ff              1    rst 38h
+0023    ff              1    rst 38h
+0024    ff              1    rst 38h
+0025    ff              1    rst 38h
+0026    ff              1    rst 38h
+0027    ff              1    rst 38h
+0028    ff              1    rst 38h
+0029    ff              1    rst 38h
+002a    ff              1    rst 38h
+002b    ff              1    rst 38h
+002c    ff              1    rst 38h
+002d    ff              1    rst 38h
+002e    ff              1    rst 38h
+002f    ff              1    rst 38h
+0030    ff              1    rst 38h
+0031    ff              1    rst 38h
+0032    ff              1    rst 38h
+0033    ff              1    rst 38h
+0034    ff              1    rst 38h
+0035    ff              1    rst 38h
+0036    ff              1    rst 38h
+0037    ff              1    rst 38h
+0038    f3              1    di
+0039    af              1    xor a
+003a    d3 fe           2    out (#fe),a
+003c    01 57 04        3    ld bc, #0457
+003f    0b              1    dec bc
+0040    78              1    ld a, b
+0041    b1              1    or c
+0042    20 fb           2    jr nz, -5
+0044    3e ff           2    ld a, #ff
+0046    d3 fe           2    out (#fe),a
+0048    08              1    ex af,af'
+0049    4f              1    ld c, a
+004a    08              1    ex af,af'
+004b    16 08           2    ld d, #08
+004d    3e ff           2    ld a, #ff
+004f    d3 fe           2    out (#fe),a
+0051    06 c8           2    ld b, #c8
+0053    cb 39           2    srl c
+0055    cb 18           2    rr b
+0057    10 fe           2    djnz #fe
+0059    af              1    xor a
+005a    d3 fe           2    out (#fe),a
+005c    06 20           2    ld b, #20
+005e    10 fe           2    djnz #fe
+0060    15              1    dec d
+0061    20 ea           2    jr nz, -22
+0063    fb              1    ei
+0064    76              1    halt
+0065    f3              1    di
+0066    31 00 00        3    ld sp, #0000
+0069    af              1    xor a
+006a    08              1    ex af,af'
+006b    21 00 40        3    ld hl, #4000
+006e    11 01 40        3    ld de, #4001
+0071    01 00 40        3    ld bc, #4000
+0074    3e 00           2    ld a, #00
+0076    77              1    ld (hl), a
+0077    ed b0           2    ldir
+0079    21 00 40        3    ld hl, #4000
+007c    01 00 40        3    ld bc, #4000
+007f    16 00           2    ld d, #00
+0081    af              1    xor a
+0082    ae              1    xor (hl)
+0083    b2              1    or d
+0084    57              1    ld d, a
+0085    23              1    inc hl
+0086    0b              1    dec bc
+0087    78              1    ld a, b
+0088    b1              1    or c
+0089    20 f6           2    jr nz, -10
+008b    08              1    ex af,af'
+008c    7a              1    ld a, d
+008d    08              1    ex af,af'
+008e    21 00 40        3    ld hl, #4000
+0091    11 01 40        3    ld de, #4001
+0094    01 00 40        3    ld bc, #4000
+0097    3e ff           2    ld a, #ff
+0099    77              1    ld (hl), a
+009a    ed b0           2    ldir
+009c    21 00 40        3    ld hl, #4000
+009f    01 00 40        3    ld bc, #4000
+00a2    16 00           2    ld d, #00
+00a4    3e ff           2    ld a, #ff
+00a6    ae              1    xor (hl)
+00a7    b2              1    or d
+00a8    57              1    ld d, a
+00a9    23              1    inc hl
+00aa    0b              1    dec bc
+00ab    78              1    ld a, b
+00ac    b1              1    or c
+00ad    20 f5           2    jr nz, -11
+00af    08              1    ex af,af'
+00b0    b2              1    or d
+00b1    08              1    ex af,af'
+00b2    21 00 40        3    ld hl, #4000
+00b5    11 01 40        3    ld de, #4001
+00b8    01 00 40        3    ld bc, #4000
+00bb    3e 55           2    ld a, #55
+00bd    77              1    ld (hl), a
+00be    ed b0           2    ldir
+00c0    21 00 40        3    ld hl, #4000
+00c3    01 00 40        3    ld bc, #4000
+00c6    16 00           2    ld d, #00
+00c8    3e 55           2    ld a, #55
+00ca    ae              1    xor (hl)
+00cb    b2              1    or d
+00cc    57              1    ld d, a
+00cd    23              1    inc hl
+00ce    0b              1    dec bc
+00cf    78              1    ld a, b
+00d0    b1              1    or c
+00d1    20 f5           2    jr nz, -11
+00d3    08              1    ex af,af'
+00d4    b2              1    or d
+00d5    08              1    ex af,af'
+00d6    21 00 40        3    ld hl, #4000
+00d9    11 01 40        3    ld de, #4001
+00dc    01 00 40        3    ld bc, #4000
+00df    3e aa           2    ld a, #aa
+00e1    77              1    ld (hl), a
+00e2    ed b0           2    ldir
+00e4    21 00 40        3    ld hl, #4000
+00e7    01 00 40        3    ld bc, #4000
+00ea    16 00           2    ld d, #00
+00ec    3e aa           2    ld a, #aa
+00ee    ae              1    xor (hl)
+00ef    b2              1    or d
+00f0    57              1    ld d, a
+00f1    23              1    inc hl
+00f2    0b              1    dec bc
+00f3    78              1    ld a, b
+00f4    b1              1    or c
+00f5    20 f5           2    jr nz, -11
+00f7    08              1    ex af,af'
+00f8    b2              1    or d
+00f9    08              1    ex af,af'
+00fa    fb              1    ei
+00fb    76              1    halt
+00fc    ff              1    rst 38h
+00fd    ff              1    rst 38h
+00fe    ff              1    rst 38h
+00ff    ff              1    rst 38h
+0100    ff              1    rst 38h
+0101    ff              1    rst 38h
+0102    ff              1    rst 38h
+0103    ff              1    rst 38h

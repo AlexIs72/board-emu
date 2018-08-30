@@ -1,5 +1,5 @@
-#ifndef __EMU_CORE_Z80_INSTRUCTION_H__
-#define __EMU_CORE_Z80_INSTRUCTION_H__
+#ifndef __EMU_Z80_INSTRUCTION_H__
+#define __EMU_Z80_INSTRUCTION_H__
 
 #include <stdint.h>
 

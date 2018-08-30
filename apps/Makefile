@@ -1,5 +1,5 @@
 
-TARGETS=mips-disasm speccy-emu
+TARGETS=mips-disasm z80-disasm speccy-emu
 
 include ../config.mk
 include ../build.mk/targets.mk

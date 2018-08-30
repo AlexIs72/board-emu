@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(speccy-test)
+project(z80-disasm)
 
 include_directories("${PROJECT_SOURCE_DIR}/../../lib/libemu_core/include" )
 include_directories("${PROJECT_SOURCE_DIR}/../../lib/libemu_z80/include" )

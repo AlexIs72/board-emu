@@ -7,10 +7,13 @@
 #include <string>
 
 #include <speccy/board.h>
+#include <z80/processor.h>
 
 namespace emu {
     namespace speccy {
         class board48k : public board {
+			private:
+				emu::z80::processor   _mpu;
             public:
                 board48k(); /* : board() { }*/
                 virtual ~board48k(); /* { }*/
@@ -19,6 +22,7 @@ namespace emu {
                     return std::string("Speccy 48K board");
                 }
 
+				virtual void reset();
 				virtual uint8_t run(); // { return 0; }
 
         };

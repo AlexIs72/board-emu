@@ -24,6 +24,7 @@ memory_segment::memory_segment(uint32_t address, size_t size) {
 }
 
 memory_segment::~memory_segment() {
+printf("===========> memory_segment destroy\n");
     if(_data) {
 		free(_data);
     }
@@ -33,6 +34,8 @@ void memory_segment::_init(uint32_t address, size_t size) {
     _address = address;
     _data = NULL;
     _size = size;
+
+printf("===========> memory_segment init\n");
 
 	if(_size) {
 		// TODO Move to seperate method

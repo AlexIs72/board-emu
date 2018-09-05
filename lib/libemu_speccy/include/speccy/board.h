@@ -28,7 +28,8 @@ namespace emu {
 
 //				virtual inline emu::core::i_bus *get_bus() { return _system_bus; }
 
-				virtual uint8_t run() { return 0; }
+//				virtual void reset();
+//				virtual uint8_t run(); // { return 0; }
 		};
 	};
 };

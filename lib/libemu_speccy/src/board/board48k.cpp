@@ -17,6 +17,7 @@ using namespace emu::speccy;
 */
 
 board48k::board48k():board() {
+	_mpu.connect_to_bus(_get_system_bus());	
 	_create_memory_segment("RAM", 0x4000, 49152);
 //	attach_cpu()
 }
@@ -24,6 +25,23 @@ board48k::board48k():board() {
 board48k::~board48k() {
 }
 
+void board48k:: reset() {
+    _mpu.reset();
+}
+
 uint8_t board48k::run() {
-	return 0;
+    emu::core::bus *system_bus = _get_system_bus();
+
+    reset();
+
+    if(system_bus == NULL) {
+        return 1;
+    }
+
+//  while(1) {
+    for(int i=0; i<100; i++) {
+		_mpu.next();
+    }
+
+    return 0;
 }

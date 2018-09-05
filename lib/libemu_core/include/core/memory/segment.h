@@ -10,7 +10,6 @@
 #include <core/memory/segment/iterator.h>
 #include <core/memory/cell.h>
 
-
 namespace emu {
     namespace core {
 		class memory_segment {
@@ -24,6 +23,12 @@ namespace emu {
 				memory_segment(uint32_t address);
 				memory_segment(uint32_t address, size_t size);
 				~memory_segment();
+
+/*
+	TODO
+
+	- Add method compare(memory_segment &)
+*/
 
 				template<typename T> size_t get_size() {
 					if(_size == 0) {
@@ -40,6 +45,12 @@ namespace emu {
 					return _address;
 				}
 
+				inline bool is_contain_address(uint32_t address) const {
+        			if(address >= _address && address <= address + _size) {
+            			return true;
+        			}
+					return false;
+				}
 
 				template<typename T> void set(memory_cell<T> &cell) {
 				}
@@ -68,6 +79,25 @@ namespace emu {
 					if(address % sizeof(T) != 0) {
 						throw std::invalid_argument("Invalid address alignment");
 					}
+/*					size_t offs = address - _address;
+//fprintf(stderr, "[%s] ====> offs = %ld\n", __FUNCTION__, offs);
+					T* addr = reinterpret_cast<T*>(_data + offs);
+//fprintf(stderr, "[%s] ====> addr = %p\n", __FUNCTION__, addr);
+					T value = *addr;
+//fprintf(stderr, "[%s] ====> value = %d\n", __FUNCTION__, value);
+					return memory_cell<T>(address, value);
+*/
+					return get_raw<T>(address);
+				}
+
+				template<typename T> memory_cell<T> get_raw(uint32_t address) {
+/*//fprintf(stderr, "[%s] ====> 0x%X, 0x%X, %ld, %ld\n", __FUNCTION__, _address, address, sizeof(T), address % sizeof(T));
+					if(address < _address || address >= _address + _size) {
+						throw std::invalid_argument("Invalid address");
+					}
+					if(address % sizeof(T) != 0) {
+						throw std::invalid_argument("Invalid address alignment");
+					}*/
 					size_t offs = address - _address;
 //fprintf(stderr, "[%s] ====> offs = %ld\n", __FUNCTION__, offs);
 					T* addr = reinterpret_cast<T*>(_data + offs);
@@ -76,6 +106,7 @@ namespace emu {
 //fprintf(stderr, "[%s] ====> value = %d\n", __FUNCTION__, value);
 					return memory_cell<T>(address, value);
 				}
+
 
 				template<typename T> memory_segment_iterator<T>  begin() {
 					return memory_segment_iterator<T>(_address, reinterpret_cast<T*>(_data));

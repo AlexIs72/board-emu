@@ -11,6 +11,8 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../libemu_core/include")
 add_definitions(-Wall -Werror -Wextra -std=c++11 -ggdb -O0)
 
 set(SRC
+	src/processor.cpp
+
 	src/instruction.cpp
 	src/instruction/factory.cpp
 #	src/instruction/primary.cpp

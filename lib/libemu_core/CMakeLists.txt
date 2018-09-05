@@ -13,6 +13,7 @@ set(SRC
 #	core
 #	src/core/instruction_processor.cpp
 	src/board.cpp
+	src/bus.cpp
 	src/memory/segment.cpp
 #	src/instruction.cpp
 #	src/core/memory_block_iterator.cpp

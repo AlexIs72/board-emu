@@ -26,7 +26,7 @@ $(CONFIG_MK):
 
 $(TARGETS):
 	@echo "build target(s)..."
-	@make -C $@
+	@make -C $@ || exit 1
 
 clean:
 	@rm -rf build

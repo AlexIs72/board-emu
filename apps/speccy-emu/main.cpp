@@ -9,6 +9,8 @@
 int main(int argc, char **argv) {
 	emu::speccy::board48k	brd;	
 
+	brd.load_memory_segment_from_file("/home/alexey/projects/board-emu/dumps/zx_spectrum/tests/TEST48.BIN", "ROM");
+
 	brd.run();
 
 

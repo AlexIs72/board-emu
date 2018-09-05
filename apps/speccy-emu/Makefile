@@ -26,6 +26,6 @@ run: build
 #	$(BUILD_DIR)/apps/$(TARGET)/$(TARGET) $(BUILD_DIR)/../dumps/zx_spectrum/tests/TEST48K.rom
 #	$(BUILD_DIR)/apps/$(TARGET)/$(TARGET) $(BUILD_DIR)/../dumps/mips.bin 
 
-run_dbg: build
+debug: build
 	gdb --args $(BUILD_DIR)/apps/$(TARGET)/$(TARGET)  
 #$(BUILD_DIR)/../dumps/zx_spectrum/48.bin 

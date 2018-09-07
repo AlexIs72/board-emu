@@ -37,8 +37,8 @@ set_property(TARGET emu_speccy
 
 
 target_link_libraries(${PROJECT_NAME}
-	emu_core
 	emu_speccy
 	emu_z80
+	emu_core
 )
 

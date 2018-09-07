@@ -59,6 +59,10 @@ R (8)
 
 				virtual std::string get_name() { return std::string("Zilog Z80"); } 
 
+				virtual void dump();
+
+			private:
+				void _registers_dump();
 //				virtual chip_type_t get_type() { return MPU_CHIP; }
         };
     };

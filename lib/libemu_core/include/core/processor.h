@@ -36,6 +36,8 @@ namespace emu {
 					return true;
 				}
 
+				virtual void dump();
+
 			protected:
 				// TODO Need to add exception
 				inline bus *get_system_bus() { return _system_bus; }

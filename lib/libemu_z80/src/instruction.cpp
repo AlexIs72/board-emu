@@ -24,18 +24,11 @@ const char *instruction::_reg_to_str(uint8_t reg) {
 // TODO
 	return 0;
 }
-/*
-uint8_t instruction::_get_byte_value() const {
-	return (_get_raw_value() & 0x00FF0000) >> 16;
-}
 
-uint16_t instruction::_get_halfword_value() {
-	return (_get_raw_value() & 0x00FFFF00) >> 8;
+bool instruction::exec() {
+printf("===> exec for '%s' not implemented yet!\n", to_string().c_str());
+	return  false;
 }
-
-uint32_t _get_word_value() {
-}
-*/
 
 #if 0
 std::string instruction::opcode_to_string()  {

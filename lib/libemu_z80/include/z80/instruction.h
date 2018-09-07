@@ -44,7 +44,9 @@ namespace emu {
     				return get_opcode(_get_raw_value());
 				}
 
-				
+				virtual bool exec(); /* {
+printf("===> exec for '%s' not implemented yet!\n", to-string().c_str());
+				}	*/
 		};
 	};
 };
